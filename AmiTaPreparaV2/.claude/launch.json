@@ -1,0 +1,15 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "amitaprepara",
+      "autoPort": true,
+      "runtimeExecutable": "python3",
+      "runtimeArgs": [
+        "-c",
+        "import sys; sys.path=[p for p in sys.path if p and 'AmiTaPrepara' not in p]; import os,functools,http.server,socketserver; D='/Users/rich/Documents/GitHub/demo-apps/AmiTaPreparaV2'; H=functools.partial(http.server.SimpleHTTPRequestHandler, directory=D); socketserver.TCPServer(('127.0.0.1', int(os.environ.get('PORT','4173'))), H).serve_forever()"
+      ],
+      "port": 4173
+    }
+  ]
+}

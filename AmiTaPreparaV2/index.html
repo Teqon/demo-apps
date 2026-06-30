@@ -1,0 +1,1075 @@
+<!DOCTYPE html>
+<html lang="pap">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Ami Ta Prepará — Sea prepará pa kualke riesgo òf krísis</title>
+<meta name="description" content="Página ofisial di Gobièrnu di Kòrsou dediká na konsientisashon riba riesgo i krísis i kon pa prepará pa nan." />
+<link rel="icon" href="img/favicon.svg" type="image/svg+xml" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=Archivo+Black&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet" />
+<style>
+  /* ============================================================
+     AMI TA PREPARÁ — one-page site
+     Brand: yellow #FFD22A · black #1A1A1A · honeycomb motif
+     Fonts: Archivo / Archivo Black (display) · Roboto (body)
+     ============================================================ */
+
+  :root {
+    --yellow: #FFD22A;
+    --yellow-deep: #F2C200;
+    --black: #1A1A1A;
+    --ink: #141414;
+    --dark: #2E2E2E;
+    --dark-2: #242424;
+    --gray: #B3B3B3;
+    --gray-line: #e4e4e0;
+    --paper: #F6F5F1;
+    --white: #FFFFFF;
+    --red: #E5484D;
+
+    --font-display: "Archivo Black", "Archivo", sans-serif;
+    --font-head: "Archivo", sans-serif;
+    --font-body: "Roboto", "Archivo", sans-serif;
+
+    --maxw: 1200px;
+    --gut: clamp(1.1rem, 4vw, 3rem);
+    --radius: 4px;
+
+    --hex: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; scroll-padding-top: 92px; }
+
+  body {
+    font-family: var(--font-body);
+    color: var(--black);
+    background: var(--white);
+    line-height: 1.45;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3, h4, .display { font-family: var(--font-head); }
+  ::selection { background: var(--yellow); color: var(--black); }
+
+  a { color: inherit; text-decoration: none; }
+  img { max-width: 100%; display: block; }
+
+  .wrap { width: 100%; max-width: var(--maxw); margin-inline: auto; padding-inline: var(--gut); }
+
+  /* ---------- honeycomb backgrounds ---------- */
+  .honey-dark {
+    background-color: var(--black);
+    background-image:
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='100' viewBox='0 0 56 100'%3E%3Cg fill='none' stroke='%23ffffff' stroke-opacity='0.05' stroke-width='1.4'%3E%3Cpath d='M28 0 L56 16 L56 50 L28 66 L0 50 L0 16 Z'/%3E%3Cpath d='M28 66 L56 82 L56 116 L28 132 L0 116 L0 82 Z'/%3E%3Cpath d='M0 -34 L28 -18 L28 16 L0 32 L-28 16 L-28 -18 Z'/%3E%3Cpath d='M56 -34 L84 -18 L84 16 L56 32 L28 16 L28 -18 Z'/%3E%3C/g%3E%3C/svg%3E");
+    background-size: 112px 200px;
+  }
+  .honey-yellow {
+    background-color: var(--yellow);
+    background-image:
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='100' viewBox='0 0 56 100'%3E%3Cg fill='none' stroke='%231a1a1a' stroke-opacity='0.07' stroke-width='1.4'%3E%3Cpath d='M28 0 L56 16 L56 50 L28 66 L0 50 L0 16 Z'/%3E%3Cpath d='M28 66 L56 82 L56 116 L28 132 L0 116 L0 82 Z'/%3E%3C/g%3E%3C/svg%3E");
+    background-size: 84px 150px;
+  }
+
+  /* ============================================================
+     ALERT BAR
+     ============================================================ */
+  .alertbar {
+    background: var(--black);
+    color: var(--white);
+    font-family: var(--font-head);
+    font-size: .82rem;
+    letter-spacing: .02em;
+    border-bottom: 2px solid var(--yellow);
+  }
+  .alertbar .wrap {
+    display: flex; align-items: center; gap: .8rem;
+    padding-block: .55rem;
+  }
+  .alertbar .pulse {
+    width: 10px; height: 10px; border-radius: 50%;
+    background: var(--yellow); flex: none;
+    box-shadow: 0 0 0 0 rgba(255,210,42,.7);
+    animation: pulse 2s infinite;
+  }
+  @keyframes pulse {
+    0% { box-shadow: 0 0 0 0 rgba(255,210,42,.6); }
+    70% { box-shadow: 0 0 0 9px rgba(255,210,42,0); }
+    100% { box-shadow: 0 0 0 0 rgba(255,210,42,0); }
+  }
+  .alertbar b { color: var(--yellow); text-transform: uppercase; letter-spacing: .08em; }
+  .alertbar span { opacity: .9; }
+  .alertbar button {
+    margin-left: auto; background: none; border: none; color: var(--gray);
+    cursor: pointer; font-size: 1.1rem; line-height: 1; padding: 0 .2rem;
+  }
+  .alertbar button:hover { color: var(--white); }
+
+  /* ============================================================
+     HEADER / NAV
+     ============================================================ */
+  header.site {
+    position: sticky; top: 0; z-index: 60;
+    background: rgba(255,255,255,.92);
+    backdrop-filter: saturate(140%) blur(10px);
+    border-bottom: 1px solid var(--gray-line);
+    transition: box-shadow .3s, padding .3s;
+  }
+  header.site.scrolled { box-shadow: 0 6px 24px rgba(0,0,0,.08); }
+  .nav {
+    display: flex; align-items: center; gap: 1.5rem;
+    padding-block: .8rem; transition: padding .3s;
+  }
+  header.site.scrolled .nav { padding-block: .5rem; }
+  .brand img { height: 42px; width: auto; transition: height .3s; }
+  header.site.scrolled .brand img { height: 36px; }
+  .nav-links {
+    display: flex; gap: .2rem; margin-left: auto; list-style: none;
+    align-items: center;
+  }
+  .nav-links a {
+    font-family: var(--font-head); font-weight: 700; font-size: .82rem;
+    text-transform: uppercase; letter-spacing: .04em;
+    padding: .55rem .7rem; border-radius: var(--radius);
+    position: relative; color: var(--black);
+  }
+  .nav-links a::after {
+    content: ""; position: absolute; left: .7rem; right: .7rem; bottom: .3rem;
+    height: 3px; background: var(--yellow); transform: scaleX(0);
+    transform-origin: left; transition: transform .25s;
+  }
+  .nav-links a:hover::after { transform: scaleX(1); }
+  .nav-cta {
+    background: var(--yellow); color: var(--black) !important;
+    font-family: var(--font-head); font-weight: 800; font-size: .82rem;
+    text-transform: uppercase; letter-spacing: .04em;
+    padding: .6rem 1rem !important; border-radius: var(--radius);
+    border: 2px solid var(--black);
+    box-shadow: 3px 3px 0 var(--black); transition: transform .12s, box-shadow .12s;
+  }
+  .nav-cta:hover { transform: translate(-1px,-1px); box-shadow: 4px 4px 0 var(--black); }
+  .nav-cta::after { display: none; }
+  .lang {
+    font-family: var(--font-head); font-weight: 700; font-size: .78rem;
+    border: 1.5px solid var(--gray-line); border-radius: 40px;
+    padding: .35rem .7rem; color: var(--dark); cursor: pointer; background: var(--white);
+  }
+  .burger { display: none; background: none; border: none; cursor: pointer; padding: .3rem; }
+  .burger span { display: block; width: 26px; height: 3px; background: var(--black); margin: 5px 0; border-radius: 2px; transition: .3s; }
+
+  /* ============================================================
+     HERO
+     ============================================================ */
+  .hero { position: relative; color: var(--white); overflow: hidden; }
+  .hero::before {
+    content: ""; position: absolute; inset: 0;
+    background: radial-gradient(120% 90% at 80% -10%, rgba(255,210,42,.18), transparent 55%);
+    pointer-events: none;
+  }
+  .hero .wrap {
+    position: relative; z-index: 2;
+    padding-block: clamp(3.5rem, 9vw, 7rem);
+    display: grid; grid-template-columns: 1.15fr .85fr; gap: 3rem; align-items: center;
+  }
+  .hero .eyebrow {
+    display: inline-flex; align-items: center; gap: .55rem;
+    font-family: var(--font-head); font-weight: 700; font-size: .76rem;
+    text-transform: uppercase; letter-spacing: .18em; color: var(--yellow);
+    margin-bottom: 1.3rem;
+  }
+  .hero .eyebrow::before {
+    content: ""; width: 26px; height: 2px; background: var(--yellow);
+  }
+  .hero h1 {
+    font-family: var(--font-display);
+    font-size: clamp(2.6rem, 6.4vw, 5rem);
+    line-height: .96; letter-spacing: -.01em; text-transform: uppercase;
+    margin-bottom: 1.3rem;
+  }
+  .hero h1 .y { color: var(--yellow); }
+  .hero p.lead {
+    font-size: clamp(1rem, 1.4vw, 1.18rem); color: #d7d7d7; max-width: 46ch;
+    margin-bottom: 2rem; line-height: 1.55;
+  }
+  .hero-cta { display: flex; flex-wrap: wrap; gap: .9rem; }
+  .btn {
+    display: inline-flex; align-items: center; gap: .6rem;
+    font-family: var(--font-head); font-weight: 800; font-size: .9rem;
+    text-transform: uppercase; letter-spacing: .03em;
+    padding: .9rem 1.5rem; border-radius: var(--radius); cursor: pointer;
+    border: 2px solid var(--yellow); transition: transform .12s, box-shadow .12s, background .2s, color .2s;
+  }
+  .btn-primary { background: var(--yellow); color: var(--black); box-shadow: 4px 4px 0 rgba(0,0,0,.55); }
+  .btn-primary:hover { transform: translate(-2px,-2px); box-shadow: 6px 6px 0 rgba(0,0,0,.55); }
+  .btn-ghost { background: transparent; color: var(--yellow); border-color: rgba(255,255,255,.4); }
+  .btn-ghost:hover { border-color: var(--yellow); background: rgba(255,210,42,.1); }
+  .btn .arr { transition: transform .2s; }
+  .btn:hover .arr { transform: translateX(4px); }
+
+  /* hero side: hex stat cluster */
+  .hero-aside { position: relative; display: grid; place-items: center; }
+  .hexgrid {
+    display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem 1.4rem;
+    width: 100%; max-width: 380px;
+  }
+  .hexgrid .stat:nth-child(even) { margin-top: 2.4rem; }
+  .stat {
+    aspect-ratio: 1 / 1.06; clip-path: var(--hex);
+    display: grid; place-content: center; text-align: center; padding: 1rem;
+  }
+  .stat.fill { background: var(--yellow); color: var(--black); }
+  .stat.outline { background: var(--dark); color: var(--white); border: 1px solid rgba(255,255,255,.12); }
+  .stat .num { font-family: var(--font-display); font-size: clamp(1.6rem, 3.4vw, 2.5rem); line-height: 1; }
+  .stat .lab { font-family: var(--font-head); font-weight: 600; font-size: .68rem; text-transform: uppercase; letter-spacing: .06em; margin-top: .4rem; }
+  .stat.outline .lab { color: var(--gray); }
+
+  /* ============================================================
+     SECTION SCAFFOLD
+     ============================================================ */
+  section { padding-block: clamp(3.2rem, 7vw, 6rem); position: relative; }
+  .sec-head { max-width: 760px; margin-bottom: 2.6rem; }
+  .kicker {
+    display: inline-flex; align-items: center; gap: .5rem;
+    font-family: var(--font-head); font-weight: 700; font-size: .74rem;
+    text-transform: uppercase; letter-spacing: .16em; color: var(--dark);
+    margin-bottom: .9rem;
+  }
+  .kicker .dot { width: 18px; height: 18px; clip-path: var(--hex); background: var(--yellow); display: inline-block; }
+  section.on-dark .kicker { color: var(--yellow); }
+  h2.title {
+    font-family: var(--font-display); text-transform: uppercase;
+    font-size: clamp(1.9rem, 4.3vw, 3rem); line-height: 1.02; letter-spacing: -.005em;
+  }
+  section.on-dark { color: var(--white); }
+  section.on-dark h2.title { color: var(--white); }
+  .lede { color: var(--dark); font-size: 1.05rem; margin-top: 1rem; max-width: 65ch; }
+  section.on-dark .lede { color: #cfcfcf; }
+  .on-paper { background: var(--paper); }
+
+  /* ============================================================
+     INTRO STRIP — "3 dia" callout
+     ============================================================ */
+  .intro-grid { display: grid; grid-template-columns: 1.3fr .9fr; gap: 2.6rem; align-items: center; }
+  .intro-grid p { color: var(--dark); margin-bottom: 1rem; font-size: 1.02rem; }
+  .threeday {
+    background: var(--black); color: var(--white); border-radius: 8px;
+    padding: 2rem; position: relative; overflow: hidden;
+    border-left: 6px solid var(--yellow);
+  }
+  .threeday .big { font-family: var(--font-display); color: var(--yellow); font-size: clamp(3rem,7vw,4.5rem); line-height: .9; }
+  .threeday .big small { font-size: .9rem; color: var(--white); display: block; font-family: var(--font-head); letter-spacing: .1em; text-transform: uppercase; margin-top:.4rem;}
+  .threeday p { color: #d2d2d2; margin-top: 1rem; font-size: .96rem; }
+
+  /* ============================================================
+     QUICK CARDS (denkvooruit-style icon menu)
+     ============================================================ */
+  .cards { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.4rem; }
+  .card {
+    background: var(--white); border: 1px solid var(--gray-line); border-radius: 10px;
+    padding: 1.8rem 1.5rem; display: flex; flex-direction: column; gap: .9rem;
+    transition: transform .2s, box-shadow .2s, border-color .2s; position: relative; overflow: hidden;
+  }
+  .card::before {
+    content: ""; position: absolute; top: -30px; right: -30px; width: 90px; height: 100px;
+    clip-path: var(--hex); background: var(--paper); transition: background .2s; z-index: 0;
+  }
+  .card:hover { transform: translateY(-6px); box-shadow: 0 18px 40px rgba(0,0,0,.1); border-color: var(--yellow); }
+  .card:hover::before { background: var(--yellow); }
+  .card-ico {
+    width: 64px; height: 70px; clip-path: var(--hex); background: var(--black);
+    display: grid; place-content: center; position: relative; z-index: 1;
+  }
+  .card:hover .card-ico { background: var(--yellow); }
+  .card-ico svg { width: 32px; height: 32px; stroke: var(--yellow); fill: none; stroke-width: 2; transition: stroke .2s; }
+  .card:hover .card-ico svg { stroke: var(--black); }
+  .card h3 { font-family: var(--font-head); font-weight: 800; font-size: 1.18rem; text-transform: uppercase; position: relative; z-index: 1; }
+  .card p { color: var(--dark); font-size: .92rem; flex: 1; position: relative; z-index: 1; }
+  .card .more { font-family: var(--font-head); font-weight: 700; font-size: .82rem; text-transform: uppercase; letter-spacing: .04em; color: var(--black); display: inline-flex; gap: .4rem; position: relative; z-index: 1; }
+  .card .more .arr { color: var(--yellow-deep); transition: transform .2s; }
+  .card:hover .more .arr { transform: translateX(4px); }
+
+  /* ============================================================
+     STEPS (signature 3-step preparation)
+     ============================================================ */
+  .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.6rem; }
+  .step {
+    background: var(--white); border-radius: 12px; overflow: hidden;
+    border: 1px solid var(--gray-line); display: flex; flex-direction: column;
+    transition: transform .2s, box-shadow .2s;
+  }
+  .step:hover { transform: translateY(-6px); box-shadow: 0 18px 44px rgba(0,0,0,.12); }
+  .step-top { background: var(--black); padding: 1.8rem; position: relative; overflow: hidden; }
+  .step-top.honey-dark { background-color: var(--black); }
+  .step-num {
+    width: 58px; height: 64px; clip-path: var(--hex); background: var(--yellow);
+    display: grid; place-content: center; font-family: var(--font-display);
+    font-size: 1.7rem; color: var(--black); position: relative; z-index: 1;
+  }
+  .step-top svg.deco { position: absolute; right: -10px; bottom: -14px; width: 92px; height: 92px; stroke: rgba(255,210,42,.5); fill: none; stroke-width: 1.6; }
+  .step-body { padding: 1.5rem 1.6rem 1.8rem; flex: 1; }
+  .step-body h3 { font-family: var(--font-head); font-weight: 800; font-size: 1.2rem; text-transform: uppercase; margin-bottom: .7rem; }
+  .step-body .tag { font-family: var(--font-head); font-weight: 700; font-size: .72rem; letter-spacing: .12em; text-transform: uppercase; color: var(--yellow-deep); display: block; margin-bottom: .5rem; }
+  .step-body p { color: var(--dark); font-size: .95rem; margin-bottom: .8rem; }
+  .step-body ul { list-style: none; display: flex; flex-direction: column; gap: .55rem; }
+  .step-body li { display: flex; gap: .6rem; font-size: .9rem; color: var(--dark); }
+  .step-body li::before { content: ""; flex: none; width: 14px; height: 16px; margin-top: 3px; clip-path: var(--hex); background: var(--yellow); }
+
+  /* ============================================================
+     EMERGENCY KIT (dark, honeycomb, poster-style)
+     ============================================================ */
+  .kit-grid { display: grid; grid-template-columns: 1.5fr 1fr; gap: 3rem; align-items: start; }
+  .kit-list { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.1rem; }
+  .kit-item {
+    display: flex; align-items: center; gap: .9rem;
+    background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.09);
+    border-radius: 8px; padding: .85rem 1rem; transition: background .2s, border-color .2s, transform .2s;
+  }
+  .kit-item:hover { background: rgba(255,210,42,.1); border-color: var(--yellow); transform: translateX(4px); }
+  .kit-item .ico { width: 42px; height: 46px; flex: none; clip-path: var(--hex); background: var(--yellow); display: grid; place-content: center; }
+  .kit-item .ico svg { width: 22px; height: 22px; stroke: var(--black); fill: none; stroke-width: 2; }
+  .kit-item span { font-family: var(--font-head); font-weight: 600; font-size: .92rem; }
+  .kit-aside { background: var(--yellow); color: var(--black); border-radius: 12px; padding: 1.8rem; }
+  .kit-aside h3 { font-family: var(--font-display); font-size: 1.4rem; text-transform: uppercase; line-height: 1; margin-bottom: .8rem; }
+  .kit-aside p { font-size: .94rem; margin-bottom: 1rem; }
+  .kit-aside .note { font-size: .82rem; border-top: 1.5px solid rgba(0,0,0,.2); padding-top: 1rem; font-weight: 500; }
+
+  /* ---------- tips inline ---------- */
+  .tips { display: grid; grid-template-columns: repeat(2,1fr); gap: 1.4rem; margin-top: 2.6rem; }
+  .tip { display: flex; gap: 1rem; background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.09); border-radius: 10px; padding: 1.3rem; }
+  .tip .ico { width: 46px; height: 50px; flex: none; clip-path: var(--hex); background: rgba(255,210,42,.18); display: grid; place-content: center; }
+  .tip .ico svg { width: 24px; height: 24px; stroke: var(--yellow); fill: none; stroke-width: 1.8; }
+  .tip h4 { font-family: var(--font-head); font-weight: 700; font-size: 1rem; text-transform: uppercase; margin-bottom: .35rem; }
+  .tip p { color: #c9c9c9; font-size: .9rem; }
+
+  /* ============================================================
+     RISKS — accordion by category
+     ============================================================ */
+  .risk-intro { display: grid; grid-template-columns: 1fr .85fr; gap: 2.6rem; align-items: start; margin-bottom: 2.8rem; }
+  .risk-intro p { color: var(--dark); margin-bottom: .9rem; }
+  .profile-card { background: var(--black); color: var(--white); border-radius: 12px; padding: 1.8rem; border-top: 5px solid var(--yellow); }
+  .profile-card .yr { font-family: var(--font-display); color: var(--yellow); font-size: 1.8rem; text-transform: uppercase; line-height: 1; }
+  .profile-card .meta { display: flex; gap: 1.6rem; margin-top: 1.2rem; }
+  .profile-card .meta div .n { font-family: var(--font-display); font-size: 2rem; color: var(--white); line-height: 1; }
+  .profile-card .meta div .t { font-size: .74rem; color: var(--gray); text-transform: uppercase; letter-spacing: .06em; margin-top: .3rem; }
+  .profile-card p { color: #cdcdcd; font-size: .9rem; margin-top: 1.2rem; }
+
+  .accordion { display: flex; flex-direction: column; gap: .8rem; }
+  .acc {
+    border: 1px solid var(--gray-line); border-radius: 10px; overflow: hidden;
+    background: var(--white); transition: border-color .2s, box-shadow .2s;
+  }
+  .acc.open { border-color: var(--yellow); box-shadow: 0 10px 30px rgba(0,0,0,.07); }
+  .acc-btn {
+    width: 100%; display: flex; align-items: center; gap: 1rem; text-align: left;
+    background: none; border: none; cursor: pointer; padding: 1.1rem 1.3rem;
+    font-family: var(--font-head); font-weight: 800; font-size: 1.02rem; text-transform: uppercase;
+    color: var(--black);
+  }
+  .acc-btn .cat-ico { width: 40px; height: 44px; flex: none; clip-path: var(--hex); background: var(--black); display: grid; place-content: center; transition: background .2s; }
+  .acc.open .acc-btn .cat-ico { background: var(--yellow); }
+  .acc-btn .cat-ico svg { width: 20px; height: 20px; stroke: var(--yellow); fill: none; stroke-width: 2; transition: stroke .2s; }
+  .acc.open .acc-btn .cat-ico svg { stroke: var(--black); }
+  .acc-btn .count { margin-left: auto; font-family: var(--font-head); font-weight: 700; font-size: .76rem; color: var(--dark); background: var(--paper); border-radius: 40px; padding: .25rem .7rem; }
+  .acc-btn .chev { transition: transform .3s; flex: none; color: var(--yellow-deep); }
+  .acc.open .acc-btn .chev { transform: rotate(180deg); }
+  .acc-panel { max-height: 0; overflow: hidden; transition: max-height .4s ease; }
+  .acc.open .acc-panel { max-height: 700px; }
+  .acc-inner { padding: 0 1.3rem 1.3rem 1.3rem; }
+  .risk-list { display: grid; grid-template-columns: repeat(2, 1fr); gap: .6rem; }
+  .risk-list li { list-style: none; display: flex; align-items: center; gap: .7rem; padding: .55rem .2rem; border-bottom: 1px dashed var(--gray-line); font-size: .94rem; color: var(--dark); }
+  .risk-list li .rn { width: 30px; height: 33px; flex: none; clip-path: var(--hex); background: var(--yellow); color: var(--black); display: grid; place-content: center; font-family: var(--font-head); font-weight: 800; font-size: .82rem; }
+  .acc-inner > p { color: var(--dark); font-size: .95rem; padding-top: .4rem; }
+
+  /* ============================================================
+     CRISIS STRUCTURE — two phases
+     ============================================================ */
+  .phases { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.6rem; }
+  .phase { border-radius: 12px; padding: 2rem; position: relative; overflow: hidden; }
+  .phase.cold { background: var(--white); border: 1px solid var(--gray-line); }
+  .phase.hot { background: var(--black); color: var(--white); border: 1px solid var(--black); }
+  .phase .ph-tag { display: inline-flex; align-items: center; gap: .5rem; font-family: var(--font-head); font-weight: 800; font-size: .8rem; text-transform: uppercase; letter-spacing: .08em; padding: .4rem .9rem; border-radius: 40px; margin-bottom: 1.1rem; }
+  .phase.cold .ph-tag { background: #e7eef5; color: #2b5d86; }
+  .phase.hot .ph-tag { background: var(--yellow); color: var(--black); }
+  .phase h3 { font-family: var(--font-display); font-size: 1.5rem; text-transform: uppercase; margin-bottom: .7rem; }
+  .phase.hot h3 { color: var(--white); }
+  .phase p { font-size: .96rem; color: var(--dark); }
+  .phase.hot p { color: #d2d2d2; }
+  .phase .flame { position: absolute; right: -16px; top: -16px; width: 100px; height: 110px; clip-path: var(--hex); opacity: .12; }
+  .phase.cold .flame { background: #2b5d86; }
+  .phase.hot .flame { background: var(--yellow); opacity: .16; }
+  .struct-note { margin-top: 1.6rem; background: var(--paper); border-left: 5px solid var(--yellow); padding: 1.3rem 1.5rem; border-radius: 0 8px 8px 0; }
+  .struct-note p { color: var(--dark); font-size: .95rem; }
+  .struct-note b { color: var(--black); }
+
+  /* ============================================================
+     COMPANIES
+     ============================================================ */
+  .comp-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.6rem; }
+  .comp-block { background: var(--white); border: 1px solid var(--gray-line); border-radius: 12px; padding: 1.9rem; }
+  .comp-block h3 { font-family: var(--font-head); font-weight: 800; font-size: 1.25rem; text-transform: uppercase; margin-bottom: .8rem; display: flex; align-items: center; gap: .7rem; }
+  .comp-block h3 .ico { width: 38px; height: 42px; clip-path: var(--hex); background: var(--yellow); display: grid; place-content: center; flex: none; }
+  .comp-block h3 .ico svg { width: 20px; height: 20px; stroke: var(--black); fill: none; stroke-width: 2; }
+  .comp-block p { color: var(--dark); font-size: .95rem; margin-bottom: .9rem; }
+  .comp-block ul { list-style: none; display: flex; flex-direction: column; gap: .55rem; }
+  .comp-block li { display: flex; gap: .6rem; font-size: .92rem; color: var(--dark); }
+  .comp-block li::before { content: ""; flex: none; width: 13px; height: 15px; margin-top: 4px; clip-path: var(--hex); background: var(--yellow); }
+  .checklist { grid-column: 1 / -1; background: var(--black); color: var(--white); border-radius: 12px; padding: 2rem; }
+  .checklist h3 { font-family: var(--font-display); color: var(--white); font-size: 1.4rem; text-transform: uppercase; margin-bottom: 1.2rem; }
+  .checklist h3 .y { color: var(--yellow); }
+  .check-items { display: grid; grid-template-columns: repeat(2, 1fr); gap: .7rem; }
+  .check-items label { display: flex; align-items: center; gap: .7rem; font-size: .92rem; color: #e3e3e3; cursor: pointer; padding: .5rem; border-radius: 6px; transition: background .15s; }
+  .check-items label:hover { background: rgba(255,255,255,.05); }
+  .check-items input { appearance: none; width: 22px; height: 22px; border: 2px solid var(--gray); border-radius: 5px; flex: none; cursor: pointer; position: relative; transition: .15s; }
+  .check-items input:checked { background: var(--yellow); border-color: var(--yellow); }
+  .check-items input:checked::after { content: "✓"; position: absolute; inset: 0; display: grid; place-content: center; color: var(--black); font-weight: 800; font-size: .9rem; }
+  .check-items input:checked + span { color: var(--gray); text-decoration: line-through; }
+
+  /* ============================================================
+     FAQ
+     ============================================================ */
+  .faq { max-width: 880px; margin-inline: auto; }
+  .faq .acc-btn { font-size: 1.05rem; }
+  .faq .acc.open .acc-panel { max-height: 420px; }
+  .faq .acc-inner p { color: var(--dark); font-size: .98rem; line-height: 1.6; }
+
+  /* ============================================================
+     MEDIA / CTA band
+     ============================================================ */
+  .band { background: var(--yellow); color: var(--black); }
+  .band .wrap { display: flex; align-items: center; justify-content: space-between; gap: 2rem; flex-wrap: wrap; padding-block: 3rem; }
+  .band h2 { font-family: var(--font-display); font-size: clamp(1.6rem, 3.6vw, 2.6rem); text-transform: uppercase; line-height: 1; max-width: 22ch; }
+  .band p { margin-top: .8rem; max-width: 46ch; font-size: 1rem; }
+  .band .btn { border-color: var(--black); }
+  .band .btn-primary { background: var(--black); color: var(--yellow); box-shadow: 4px 4px 0 rgba(0,0,0,.25); }
+
+  /* ============================================================
+     FOOTER
+     ============================================================ */
+  footer.site { background: var(--ink); color: var(--white); padding-block: 3.4rem 1.5rem; }
+  .foot-grid { display: grid; grid-template-columns: 1.4fr 1fr 1fr 1fr; gap: 2.4rem; }
+  .foot-brand img { height: 46px; margin-bottom: 1.1rem; }
+  .foot-brand p { color: var(--gray); font-size: .9rem; max-width: 36ch; }
+  .foot-soc { display: flex; gap: .7rem; margin-top: 1.3rem; }
+  .foot-soc a { width: 40px; height: 44px; clip-path: var(--hex); background: var(--dark); display: grid; place-content: center; transition: background .2s; }
+  .foot-soc a:hover { background: var(--yellow); }
+  .foot-soc svg { width: 18px; height: 18px; fill: var(--yellow); transition: fill .2s; }
+  .foot-soc a:hover svg { fill: var(--black); }
+  .foot-col h4 { font-family: var(--font-head); font-weight: 800; font-size: .82rem; text-transform: uppercase; letter-spacing: .1em; color: var(--yellow); margin-bottom: 1rem; }
+  .foot-col ul { list-style: none; display: flex; flex-direction: column; gap: .6rem; }
+  .foot-col a { color: #c4c4c4; font-size: .92rem; transition: color .15s; }
+  .foot-col a:hover { color: var(--white); }
+  .foot-contact li { color: #c4c4c4; font-size: .92rem; display: flex; gap: .5rem; align-items: center; }
+  .foot-bottom { border-top: 1px solid #2c2c2c; margin-top: 2.6rem; padding-top: 1.4rem; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 1rem; color: #8a8a8a; font-size: .82rem; }
+
+  /* back to top */
+  .totop { position: fixed; right: 1.4rem; bottom: 1.4rem; width: 50px; height: 55px; clip-path: var(--hex); background: var(--yellow); color: var(--black); border: none; cursor: pointer; display: grid; place-content: center; z-index: 50; opacity: 0; transform: translateY(20px); transition: .3s; box-shadow: 0 8px 20px rgba(0,0,0,.25); }
+  .totop.show { opacity: 1; transform: translateY(0); }
+  .totop svg { width: 22px; height: 22px; stroke: var(--black); fill: none; stroke-width: 2.5; }
+
+  /* reveal */
+  .reveal { opacity: 0; transform: translateY(28px); transition: opacity .6s ease, transform .6s ease; }
+  .reveal.in { opacity: 1; transform: none; }
+
+  /* ============================================================
+     RESPONSIVE
+     ============================================================ */
+  @media (max-width: 980px) {
+    .hero .wrap { grid-template-columns: 1fr; }
+    .hero-aside { order: -1; max-width: 360px; }
+    .cards { grid-template-columns: repeat(2, 1fr); }
+    .steps { grid-template-columns: 1fr; }
+    .kit-grid, .intro-grid, .risk-intro, .comp-grid, .phases { grid-template-columns: 1fr; }
+    .foot-grid { grid-template-columns: 1fr 1fr; }
+    .tips { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 720px) {
+    .nav-links { position: fixed; inset: 0 0 0 auto; width: min(80vw, 320px); background: var(--white); flex-direction: column; align-items: stretch; padding: 5rem 1.4rem 2rem; gap: .3rem; transform: translateX(100%); transition: transform .3s; box-shadow: -10px 0 40px rgba(0,0,0,.2); }
+    .nav-links.open { transform: none; }
+    .nav-links a { padding: .9rem .7rem; border-bottom: 1px solid var(--gray-line); }
+    .nav-links a::after { display: none; }
+    .burger { display: block; margin-left: auto; z-index: 70; }
+    .lang { display: none; }
+    .kit-list, .risk-list, .check-items, .alertbar span.long { grid-template-columns: 1fr; }
+    .kit-list { grid-template-columns: 1fr; }
+    .risk-list { grid-template-columns: 1fr; }
+    .check-items { grid-template-columns: 1fr; }
+    .hexgrid { max-width: 320px; }
+  }
+  @media (max-width: 480px) {
+    .cards { grid-template-columns: 1fr; }
+    .foot-grid { grid-template-columns: 1fr; }
+    .alertbar .wrap { font-size: .74rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ============ ALERT BAR (Alerta i komunikashon) ============ -->
+<div class="alertbar" id="alertbar">
+  <div class="wrap">
+    <span class="pulse"></span>
+    <b>Alerta</b>
+    <span class="long">Den kaso di kualke riesgo eminente, situashon di krísis òf kalamidat, e alerta lo ta visibel akinan.</span>
+    <button aria-label="Sera alerta" onclick="document.getElementById('alertbar').style.display='none'">✕</button>
+  </div>
+</div>
+
+<!-- ============ HEADER ============ -->
+<header class="site" id="header">
+  <div class="wrap nav">
+    <a class="brand" href="#home" aria-label="Ami Ta Prepará">
+      <img src="img/Ami-ta-prepara-transparent-logo-p-800.png" alt="Ami Ta Prepará" />
+    </a>
+    <ul class="nav-links" id="navlinks">
+      <li><a href="#prepara">Prepará</a></li>
+      <li><a href="#pakete">Pakete</a></li>
+      <li><a href="#riesgonan">Riesgonan</a></li>
+      <li><a href="#kompanianan">Kompanianan</a></li>
+      <li><a href="#informashon">Mas Informashon</a></li>
+      <li><a class="nav-cta" href="#prepara">Sea Prepará</a></li>
+    </ul>
+    <button class="lang" aria-label="Idioma">PAP ▾</button>
+    <button class="burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<!-- ============ HERO ============ -->
+<section class="hero honey-dark" id="home">
+  <div class="wrap">
+    <div class="hero-copy">
+      <span class="eyebrow">Página ofisial · Gobièrnu di Kòrsou</span>
+      <h1>Sea <span class="y">prepará</span><br/>pa kualke krísis</h1>
+      <p class="lead">Bon biní riba amitaprepara.cw — Gobièrnu su página ofisial dediká na konsientisashon riba diferente riesgo i krísis ku por afektá nos bida diario, i kon pa prepará pa nan.</p>
+      <div class="hero-cta">
+        <a class="btn btn-primary" href="#prepara">Kon pa prepará <span class="arr">→</span></a>
+        <a class="btn btn-ghost" href="#riesgonan">Mira e 35 riesgonan</a>
+      </div>
+    </div>
+    <div class="hero-aside">
+      <div class="hexgrid">
+        <div class="stat fill"><span class="num">35</span><span class="lab">Riesgo identifiká</span></div>
+        <div class="stat outline"><span class="num">7</span><span class="lab">Kategoria</span></div>
+        <div class="stat outline"><span class="num">3</span><span class="lab">Dia prepará</span></div>
+        <div class="stat fill"><span class="num">1</span><span class="lab">Pueblo prepará</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ INTRO — Dikon prepará ============ -->
+<section id="dikon" class="on-paper">
+  <div class="wrap">
+    <div class="intro-grid">
+      <div class="reveal">
+        <span class="kicker"><span class="dot"></span> Dikon prepará</span>
+        <h2 class="title">Preparashon ta kuminsá ku abo mes</h2>
+        <p>Gobièrnu di Kòrsou a inventarisá <b>35 riesgo</b> ku por afektá nos komunidat — riesgonan ku por tin impakto direkto riba bo bida i di bo sernan kerí. ‘Ami Ta Prepará’ ta sirbi komo un guia pa abo i bo famia sa kon pa prepará i kiko mester tene kuenta kuné durante kualke situashon di riesgo òf krísis.</p>
+        <p>Den situashonnan di kalamidat, servisionan di promé asistensia lo duna prioridat na e gruponan vulnerabel — hende grandi, mucha i personanan ku desabilidat — i esnan afektá. Por sosodé tambe ku tin retraso pa yega den tur área pa motibu di opstákulo òf situashonnan demasiado peligroso.</p>
+      </div>
+      <div class="threeday reveal">
+        <div class="big">3<small>Dia prepará</small></div>
+        <p>Ta importante pa bo por kuida bo mes i bo sernan kerí pa <b style="color:var(--yellow)">por lo ménos tres dia</b>, mientras ku ta warda yudansa òf instrukshon di outoridatnan kompetente.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ QUICK CARDS (denkvooruit menu) ============ -->
+<section id="menu">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="kicker"><span class="dot"></span> Kuminsá akinan</span>
+      <h2 class="title">Kiko bo ke hasi awe?</h2>
+    </div>
+    <div class="cards">
+      <a class="card reveal" href="#pakete">
+        <div class="card-ico"><svg viewBox="0 0 24 24"><path d="M3 7l9-4 9 4v10l-9 4-9-4z"/><path d="M3 7l9 4 9-4M12 11v10"/></svg></div>
+        <h3>Pakete di emergensia</h3>
+        <p>Un lista di produktonan básiko nesesario den un situashon di krísis — e mínimo pa un persona pa dia.</p>
+        <span class="more">Mira e lista <span class="arr">→</span></span>
+      </a>
+      <a class="card reveal" href="#prepara">
+        <div class="card-ico"><svg viewBox="0 0 24 24"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></div>
+        <h3>Kon pa prepará</h3>
+        <p>Bon preparashon ta kuminsá ku tres stap simpel: bo pakete, bo plan, i bo bario.</p>
+        <span class="more">Sigui e stapnan <span class="arr">→</span></span>
+      </a>
+      <a class="card reveal" href="#riesgonan">
+        <div class="card-ico"><svg viewBox="0 0 24 24"><path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/><path d="M12 9v4M12 17h.01"/></svg></div>
+        <h3>Profil di riesgo</h3>
+        <p>E 35 riesgonan di Kòrsou, repartí den 7 kategoria — for di fenómeno di naturalesa te na eventonan geopolítiko.</p>
+        <span class="more">Konosé nan tur <span class="arr">→</span></span>
+      </a>
+      <a class="card reveal" href="#kompanianan">
+        <div class="card-ico"><svg viewBox="0 0 24 24"><path d="M3 21h18M5 21V7l8-4v18M19 21V11l-6-3"/><path d="M9 9v.01M9 13v.01M9 17v.01"/></svg></div>
+        <h3>Kompanianan</h3>
+        <p>Prepará bo organisashon ku un plan di emergensia i kontinuidat pa bo servisionan.</p>
+        <span class="more">Pa negoshinan <span class="arr">→</span></span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ STEPS — Kon pa prepará ============ -->
+<section id="prepara" class="on-paper">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="kicker"><span class="dot"></span> Prepará</span>
+      <h2 class="title">Bon preparashon den tres stap simpel</h2>
+      <p class="lede">Preparashon i protekshon kontra riesgo i krísis ta kuminsá na bo mes promé. Sigui e tres stapnan aki pa abo i bo famia ta prepará.</p>
+    </div>
+    <div class="steps">
+      <div class="step reveal">
+        <div class="step-top honey-dark">
+          <div class="step-num">1</div>
+          <svg class="deco" viewBox="0 0 24 24"><path d="M3 7l9-4 9 4v10l-9 4-9-4z"/><path d="M3 7l9 4 9-4M12 11v10"/></svg>
+        </div>
+        <div class="step-body">
+          <span class="tag">Stap 1</span>
+          <h3>Prepará bo pakete</h3>
+          <p>Un pakete di emergensia ta pa yuda abo i bo famia durante di un kalamidat. E ta konsistí produktonan ku semper mester tin den kas.</p>
+          <ul>
+            <li>Tene'é na un kaminda fásil pa yega na dje den kas</li>
+            <li>Kontrolá e pakete kada seis luna</li>
+            <li>Agregá produkto ku ta pas ku bo situashon personal</li>
+          </ul>
+        </div>
+      </div>
+      <div class="step reveal">
+        <div class="step-top honey-dark">
+          <div class="step-num">2</div>
+          <svg class="deco" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M9 13h6M9 17h6"/></svg>
+        </div>
+        <div class="step-body">
+          <span class="tag">Stap 2</span>
+          <h3>Traha un plan ku kas</h3>
+          <p>Papia ku bo famia òf sernan kerí den kas tokante kiko mester hasi durante un situashon di krísis. Palabrá:</p>
+          <ul>
+            <li>Unda ta bai skonde den kas (orkan, mal tempu)</li>
+            <li>E plan di mas ‘safe’ pa sali fo'i kas (durante un kandela)</li>
+            <li>Na unda pa bai keda òf kua shèlter, si kas no ta ‘safe’</li>
+          </ul>
+        </div>
+      </div>
+      <div class="step reveal">
+        <div class="step-top honey-dark">
+          <div class="step-num">3</div>
+          <svg class="deco" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        </div>
+        <div class="step-body">
+          <span class="tag">Stap 3</span>
+          <h3>Koordiná ku bo bario</h3>
+          <p>Palabrá ku bisiñanan òf otro hendenan den bario kon pa yuda otro na momentu ku ta ‘safe’ pa hasi esaki. Palabrá:</p>
+          <ul>
+            <li>E ruta di mas ‘safe’ pa bai un shélter</li>
+            <li>Ken por yuda òf kompañá otro</li>
+            <li>Ken den bario lo tin mas mester di yudansa</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ EMERGENCY KIT (dark poster) ============ -->
+<section id="pakete" class="on-dark honey-dark">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="kicker"><span class="dot"></span> Pakete di emergensia</span>
+      <h2 class="title">Lista di pakete di emergensia esensial</h2>
+      <p class="lede">Sea prepará pa kualke situashon di emergensia. Esaki ta e mínimo nesesario — sòru pa bo pakete ta kla promé ku un situashon eskalá.</p>
+    </div>
+    <div class="kit-grid">
+      <div class="kit-list reveal">
+        <div class="kit-item"><div class="ico"><svg viewBox="0 0 24 24"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg></div><span>Radio i flèshlait ku bateria</span></div>
+        <div class="kit-item"><div class="ico"><svg viewBox="0 0 24 24"><path d="M3 6h18v12H3z"/><circle cx="12" cy="12" r="3"/><path d="M7 9v.01M17 15v.01"/></svg></div><span>Sèn kèsh</span></div>
+        <div class="kit-item"><div class="ico"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg></div><span>Dokumentonan importante</span></div>
+        <div class="kit-item"><div class="ico"><svg viewBox="0 0 24 24"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2M12 11v5M9.5 13.5h5"/></svg></div><span>EHBO-kit</span></div>
+        <div class="kit-item"><div class="ico"><svg viewBox="0 0 24 24"><path d="M14.7 6.3a4 4 0 0 0-5.7 5.7l-6 6 2 2 6-6a4 4 0 0 0 5.7-5.7l-2.5 2.5-1.4-1.4z"/></svg></div><span>Hèrmènt</span></div>
+        <div class="kit-item"><div class="ico"><svg viewBox="0 0 24 24"><path d="M8 2h8M9 2v4M15 2v4M9 6c-1 3-3 5-3 9a6 6 0 0 0 12 0c0-4-2-6-3-9"/></svg></div><span>Awa pa bebe</span></div>
+        <div class="kit-item"><div class="ico"><svg viewBox="0 0 24 24"><path d="M3 11h18l-1.5 9a2 2 0 0 1-2 1.7H6.5a2 2 0 0 1-2-1.7z"/><path d="M3 11l2-6h14l2 6"/></svg></div><span>Kuminda duradero</span></div>
+        <div class="kit-item"><div class="ico"><svg viewBox="0 0 24 24"><rect x="6" y="3" width="12" height="18" rx="2"/><path d="M9 7h6M9 11h6M9 15h3"/></svg></div><span>Produktonan sanitario</span></div>
+        <div class="kit-item"><div class="ico"><svg viewBox="0 0 24 24"><rect x="3" y="8" width="14" height="9" rx="2"/><path d="M17 11h2a2 2 0 0 1 2 2v0a2 2 0 0 1-2 2h-2M7 12v3"/></svg></div><span>Remedi</span></div>
+      </div>
+      <aside class="kit-aside reveal">
+        <h3>Amplia na bo nesesidat</h3>
+        <p>Tene kuenta ku e lista aki ta indiká e mínimo ku tin mester pa <b>un persona pa dia</b>. Por agregá semper mas produkto ku ta pas ku bo situashon personal.</p>
+        <div class="note">Pa un lista kompletu, chèk e wèpsait ofishal di Gobièrnu.</div>
+      </aside>
+    </div>
+
+    <!-- Tepnan balioso -->
+    <div class="tips">
+      <div class="tip reveal">
+        <div class="ico"><svg viewBox="0 0 24 24"><path d="M1 6l7-3 8 3 7-3v15l-7 3-8-3-7 3z"/><path d="M8 3v15M16 6v15"/></svg></div>
+        <div>
+          <h4>Prent un mapa di bo bario</h4>
+          <p>Prent un mapa di bo besindario for di Google Maps i warda esaki na un lugá kaminda ku e no por muha, òf den bo pakete. Si internèt i GPS no ta traha, bo tin un bista konkreto di un ruta alternativo pa yega na un shèlter.</p>
+        </div>
+      </div>
+      <div class="tip reveal">
+        <div class="ico"><svg viewBox="0 0 24 24"><path d="M10 5.5a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0zM19 5.5a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0zM5.5 13a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0zM23.5 13a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z"/><path d="M12 11c-3 0-5 2-5 5 0 2 2 3 5 3s5-1 5-3c0-3-2-5-5-5z"/></svg></div>
+        <div>
+          <h4>Kòrda riba bo bestianan</h4>
+          <p>No lubidá bo bestianan di kas den bo plan di preparashon. Pensa riba kuminda, awa i un lugá sigur pa nan tambe durante un situashon di krísis.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ RISKS ============ -->
+<section id="riesgonan">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="kicker"><span class="dot"></span> Riesgonan</span>
+      <h2 class="title">Profil di riesgo di Kòrsou</h2>
+    </div>
+    <div class="risk-intro">
+      <div class="reveal">
+        <p>Kada 5 aña Kòrsou ta hasi un análisis pa identifiká riesgonan ku por afektá bida diario. Esaki ta resultá den un ‘Profíl di Riesgo’: un lista ku e riesgonan di mas relevante pa Kòrsou.</p>
+        <p>Ta krea e profil basá riba dos fuente: un método internashonal di análisis hasí pa ekspertonan, i un sondeo bou di siudadanonan di loke nan ta sinti ku por ta e riesgonan di mas grandi. Despues ta presentá e lista na Konseho di Minister pa aprobashon — i asina e ta bira ofisial.</p>
+        <p>Pa kada riesgo identifiká tin otro maneho i preparashon nesesario. Riba e sepshon aki bo ta haña informashon tokante kada un riesgo, kiko abo por hasi i kiko Gobièrnu ta hasi.</p>
+      </div>
+      <div class="profile-card reveal">
+        <div class="yr">Profíl di Riesgo<br/>2023–2028</div>
+        <div class="meta">
+          <div><div class="n">35</div><div class="t">Riesgo total</div></div>
+          <div><div class="n">7</div><div class="t">Kategoria</div></div>
+        </div>
+        <p>Preparashon ta nesesario pa instanshanan operativo di krísis i pa nos komo komunidat di Kòrsou.</p>
+      </div>
+    </div>
+
+    <div class="accordion" id="riskAcc">
+      <!-- 1 -->
+      <div class="acc reveal">
+        <button class="acc-btn">
+          <span class="cat-ico"><svg viewBox="0 0 24 24"><path d="M3 15h18M3 9h12a3 3 0 1 0-3-3M3 12h18M8 18a2 2 0 1 0 4 0"/></svg></span>
+          Fenómenonan di naturalesa
+          <span class="count">11 riesgo</span>
+          <svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+        <div class="acc-panel"><div class="acc-inner"><ul class="risk-list">
+          <li><span class="rn">1</span>Tormenta Tropikal / Orkan</li>
+          <li><span class="rn">2</span>Áwaseru fuerte</li>
+          <li><span class="rn">3</span>Inundashon — Kiebro di dam</li>
+          <li><span class="rn">4</span>Daño di Welek</li>
+          <li><span class="rn">5</span>Laman brutu / Olanan haltu</li>
+          <li><span class="rn">6</span>Warwarú</li>
+          <li><span class="rn">7</span>Tsunami</li>
+          <li><span class="rn">8</span>Temblor</li>
+          <li><span class="rn">9</span>Ola di kalor</li>
+          <li><span class="rn">10</span>Kandela (grandi) di mondi</li>
+          <li><span class="rn">11</span>Sekura</li>
+        </ul></div></div>
+      </div>
+      <!-- 2 -->
+      <div class="acc reveal">
+        <button class="acc-btn">
+          <span class="cat-ico"><svg viewBox="0 0 24 24"><path d="M3 21h18M5 21V8l7-4 7 4v13M9 21v-5h6v5M9 11h.01M15 11h.01"/></svg></span>
+          Áreanan urbanisá
+          <span class="count">3 riesgo</span>
+          <svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+        <div class="acc-panel"><div class="acc-inner"><ul class="risk-list">
+          <li><span class="rn">12</span>Kandela den kompleho di edifisio (kas di kuido, hòspital)</li>
+          <li><span class="rn">13</span>Kandela den sentro di siudat (Willemstad)</li>
+          <li><span class="rn">14</span>Edifisio ku ta basha aden</li>
+        </ul></div></div>
+      </div>
+      <!-- 3 -->
+      <div class="acc reveal">
+        <button class="acc-btn">
+          <span class="cat-ico"><svg viewBox="0 0 24 24"><path d="M4 20h16M6 20V10M10 20V6M14 20v-9M18 20V8M3 4l4 2 4-3 4 2 4-2"/></svg></span>
+          Teknológiko i industrial
+          <span class="count">5 riesgo</span>
+          <svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+        <div class="acc-panel"><div class="acc-inner"><ul class="risk-list">
+          <li><span class="rn">15</span>Eksploshon di tanki gas òf líkido bou di preshon (BLEVE)</li>
+          <li><span class="rn">16</span>Lèk di produktonan tóksiko</li>
+          <li><span class="rn">17</span>Kiebro òf lèk den pipa di preshon haltu di gas</li>
+          <li><span class="rn">18</span>Supstansia tóksiko den airu</li>
+          <li><span class="rn">19</span>Kandela riba tera òf laman (playa/boka)</li>
+        </ul></div></div>
+      </div>
+      <!-- 4 -->
+      <div class="acc reveal">
+        <button class="acc-btn">
+          <span class="cat-ico"><svg viewBox="0 0 24 24"><path d="M2 12h4l2-7 4 14 2-7h8"/></svg></span>
+          Infrastruktura i utilidatnan vital
+          <span class="count">7 riesgo</span>
+          <svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+        <div class="acc-panel"><div class="acc-inner"><ul class="risk-list">
+          <li><span class="rn">20</span>Interupshon den distribushon di koriente i awa</li>
+          <li><span class="rn">21</span>Kontaminashon di awa di bebe</li>
+          <li><span class="rn">22</span>Interupshon den suministro di gasolin / energia</li>
+          <li><span class="rn">23</span>Interupshon den sistema di komunikashon di data i telefòn</li>
+          <li><span class="rn">24</span>Aksidente di avion (di pasahero)</li>
+          <li><span class="rn">25</span>Aksidente di barku (krusero) riba laman</li>
+          <li><span class="rn">26</span>Aksidente grandi di tráfiko</li>
+        </ul></div></div>
+      </div>
+      <!-- 5 -->
+      <div class="acc reveal">
+        <button class="acc-btn">
+          <span class="cat-ico"><svg viewBox="0 0 24 24"><path d="M19 14c1.5-1.6 3-3.5 3-5.5A3.5 3.5 0 0 0 12 6 3.5 3.5 0 0 0 2 8.5c0 2 1.5 3.9 3 5.5l7 7z"/><path d="M3.5 12H8l2-3 3 6 2-3h5.5"/></svg></span>
+          Salubridat públiko
+          <span class="count">4 riesgo</span>
+          <svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+        <div class="acc-panel"><div class="acc-inner"><ul class="risk-list">
+          <li><span class="rn">27</span>Malesa di bestia infeksioso (ku por pega) pa hende</li>
+          <li><span class="rn">28</span>Ola di malesa pa medio di kuminda</li>
+          <li><span class="rn">29</span>Venenamentu</li>
+          <li><span class="rn">30</span>Pandemia di grip (òf otro vírùs)</li>
+        </ul></div></div>
+      </div>
+      <!-- 6 -->
+      <div class="acc reveal">
+        <button class="acc-btn">
+          <span class="cat-ico"><svg viewBox="0 0 24 24"><circle cx="9" cy="7" r="3"/><circle cx="17" cy="9" r="2.5"/><path d="M3 21v-2a5 5 0 0 1 9-3M14 21v-1a4 4 0 0 1 7-2.6"/></svg></span>
+          Sosio-ekonómiko
+          <span class="count">5 riesgo</span>
+          <svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+        <div class="acc-panel"><div class="acc-inner"><ul class="risk-list">
+          <li><span class="rn">31</span>Desórden durante evenemento (festival grandi, karnaval)</li>
+          <li><span class="rn">32</span>Akomodashon di hopi hende (barku krusero)</li>
+          <li><span class="rn">33</span>Desórden sosial (wèlga, vandalismo ekstremo)</li>
+          <li><span class="rn">34</span>Drama sosial</li>
+          <li><span class="rn">35</span>Menasa di terorismo</li>
+        </ul></div></div>
+      </div>
+      <!-- 7 -->
+      <div class="acc reveal">
+        <button class="acc-btn">
+          <span class="cat-ico"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18"/></svg></span>
+          Geopolítiko
+          <span class="count">Deskripshon</span>
+          <svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+        <div class="acc-panel"><div class="acc-inner">
+          <p>Efektonan ku por presentá pa motibu di tenshon geopolítiko den region i otro partinan di mundu — por ehèmpel guera i aktonan di terorismo internashonal.</p>
+        </div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CRISIS STRUCTURE ============ -->
+<section id="struktura" class="on-paper">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="kicker"><span class="dot"></span> Struktura di krísis</span>
+      <h2 class="title">Dos fase di kada riesgo i krísis</h2>
+      <p class="lede">Konforme lei i maneho di Gobièrnu di Kòrsou, tur riesgo i krísis tin dos fase.</p>
+    </div>
+    <div class="phases">
+      <div class="phase cold reveal">
+        <span class="flame"></span>
+        <span class="ph-tag">❄ Fase friu</span>
+        <h3>Vigilansia</h3>
+        <p>Den e fase aki ta vigilá un situashon i ta konsidera esaki un riesgo potensial. Instansianan di Gobièrnu enkargá ku e riesgo spesífiko ta vigilá i prepará pa un eventual krísis.</p>
+      </div>
+      <div class="phase hot reveal">
+        <span class="flame"></span>
+        <span class="ph-tag">🔥 Fase kayente</span>
+        <h3>Krísis dekretá</h3>
+        <p>Ta kuminsá na momentu ku Minister di Asuntunan General ta dekretá un krísis. E struktura normal di gobernashon ta paralisá temporalmente, i e Minister — alabes Promé Minister — ta kombertí den Komandante Supremo (Opperbevelhebber) ku ta tuma mando di henter pais.</p>
+      </div>
+    </div>
+    <div class="struct-note reveal">
+      <p>Banda di e <b>“Opperbevelhebber”</b> tin un <b>Koordinadó Nashonal di Krísis</b>, enkargá pa guia e proseso di tuma desishon. Dependé di e krísis tin un <b>“Crisis-staff”</b> i/òf e <b>CRBO</b> (Crisis- en Rampenbestrijding organisatie) pa yuda den konseho, maneho i akshon pa ku e krísis òf kalamidat.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ COMPANIES ============ -->
+<section id="kompanianan">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="kicker"><span class="dot"></span> Kompanianan</span>
+      <h2 class="title">Prepará bo organisashon</h2>
+      <p class="lede">Kompania i organisashonnan tambe mester ta prepará pa riesgo òf krísis. Un persona bon informá i prepará, ku su famia na pas i kuidá, por duna mas den un situashon di krísis.</p>
+    </div>
+    <div class="comp-grid">
+      <div class="comp-block reveal">
+        <h3><span class="ico"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M9 13h6M9 17h6"/></svg></span>Plan di emergensia</h3>
+        <p>Pa bo organisashon ta semper bon prepará:</p>
+        <ul>
+          <li>Traha un plan di emergensia ku ta pensa riba kontinuashon di servisio (p.e. un “toke di keda”)</li>
+          <li>Traha un plan di asistensia — EHBO-kit, personal sertifiká i nùmbernan importante</li>
+          <li>Krea un lista di tur kolega i nan persona di kontakto, ku persona asigná pa guia (BHV)</li>
+          <li>Traha un mapa di edifisio ku salidanan di emergensia i rutanan di evakuashon</li>
+          <li>Inventarisá ekiponan, traha un plan di protekshon i sera un seguro</li>
+          <li>Sigui kanalnan ofisial di gobièrnu durante kualke kalamidat</li>
+        </ul>
+      </div>
+      <div class="comp-block reveal">
+        <h3><span class="ico"><svg viewBox="0 0 24 24"><path d="M21 12a9 9 0 1 1-9-9"/><path d="M21 3v6h-6M12 7v5l3 2"/></svg></span>Plan di kontinuidat</h3>
+        <p>Si kontinuidat di bo operashon ta esensial den un situashon di krísis, un bon preparashon adelantá ta di sumo importansia.</p>
+        <ul>
+          <li>Pensa riba un kapasidat mínimo di personal pa operashon por sigui</li>
+          <li>Analisá i prepará pa interupshon i ki impakto esaki tin pa bo klientenan</li>
+          <li>Pensa un plan di kontinuidat di servisio temporal</li>
+          <li>Plania i komuniká ku bo personal kon pa start bèk operashon</li>
+        </ul>
+        <p style="margin-top:1rem;font-size:.88rem;"><b>Tene kuenta:</b> seguridat i bienestar di abo i bo empleadonan ta na promé lugá.</p>
+      </div>
+      <div class="checklist reveal">
+        <h3>Checklist pa <span class="y">organisashon</span></h3>
+        <div class="check-items">
+          <label><input type="checkbox"><span>Lista di personal</span></label>
+          <label><input type="checkbox"><span>Nùmbernan di kontakto di emergensia</span></label>
+          <label><input type="checkbox"><span>Kontakto di emergensia di personal</span></label>
+          <label><input type="checkbox"><span>Mapa di edifisio i plan di evakuashon</span></label>
+          <label><input type="checkbox"><span>Lista di ekiponan</span></label>
+          <label><input type="checkbox"><span>Preparashon pa protekshon di edifisio i ekíponan</span></label>
+          <label><input type="checkbox"><span>Plan di kontingensia i kontinuidat di servisio</span></label>
+          <label><input type="checkbox"><span>Plan di restourashon di servisionan</span></label>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FAQ — Mas Informashon ============ -->
+<section id="informashon" class="on-paper">
+  <div class="wrap">
+    <div class="sec-head reveal" style="text-align:center;margin-inline:auto;">
+      <span class="kicker" style="justify-content:center;"><span class="dot"></span> Mas Informashon</span>
+      <h2 class="title">Preguntanan ku ta bira frekuente</h2>
+    </div>
+    <div class="accordion faq" id="faqAcc">
+      <div class="acc open reveal">
+        <button class="acc-btn">Dikon prepará?
+          <svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+        <div class="acc-panel"><div class="acc-inner"><p>Den kaso di un riesgo òf krísis, Gobièrnu di Kòrsou tin un tim di maneho ku ta eskalá i atendé e krísis pa protehá pais i komunidat. Dependé di e situashon, lo duna asistensia promé na e grupo den mas nesesidat i di riesgo mas haltu. P'esei ta importante pa kada persona i famia por sòru pa nan mes pa por lo ménos tres dia — esaki ta krea espasio pa outoridat kompetente por duna instrukshon i yudansa konforme nesesidat.</p></div></div>
+      </div>
+      <div class="acc reveal">
+        <button class="acc-btn">Kiko ami mester hasi?
+          <svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+        <div class="acc-panel"><div class="acc-inner"><p>Komo siudadano di Kòrsou, ta rekomendabel pa kada persona prepará riba e riesgonan ku por tin impakto riba bo bida i di bo sernan kerí, durante henter aña. Preparashon ta enserá ku kada persona — ku ta den estado pa hasi esaki — mester por sòru pa nan mes durante e situashon, te na momentu ku e situashon normalisá òf por risibí yudansa si ta nesesario.</p></div></div>
+      </div>
+      <div class="acc reveal">
+        <button class="acc-btn">Kiko Gobièrnu ta hasi?
+          <svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+        <div class="acc-panel"><div class="acc-inner"><p>Gobièrnu di Kòrsou tin un struktura fiho di eskalashon. Bou di guia di e Komandante Supremo ‘Opperbevelhebber’ (Minister di Asuntunan General), e Koordinadó Nashonal di Krísis i ekspertonan, e tim di krísis ta atendé e situashon, ta duna prioridat na e gruponan vulnerabel, i ta komuniká instrukshon ofisial via e kanalnan di gobièrnu.</p></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CTA BAND ============ -->
+<section class="band">
+  <div class="wrap">
+    <div>
+      <h2>No warda riba e krísis pa kuminsá prepará</h2>
+      <p>Sigui anunsionan importante, mira e videonan di preparashon i kuminsá traha bo pakete di emergensia awe mes.</p>
+    </div>
+    <div class="hero-cta">
+      <a class="btn btn-primary" href="#pakete">Traha bo pakete <span class="arr">→</span></a>
+      <a class="btn" style="border-color:var(--black);color:var(--black);" href="#riesgonan">Anunsionan importante</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer class="site">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <img src="img/Ami-ta-prepara-transparent-logo-p-500.png" alt="Ami Ta Prepará" style="filter:brightness(0) invert(1); background:transparent;" onerror="this.style.display='none'"/>
+        <p>Página ofisial di Gobièrnu di Kòrsou dediká na konsientisashon i preparashon riba riesgo i krísis.</p>
+        <div class="foot-soc">
+          <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M14 9h3l.5-3H14V4.5c0-.9.3-1.5 1.6-1.5H18V.2C17.6.1 16.4 0 15.1 0 12.3 0 10.5 1.7 10.5 4.7V6H8v3h2.5v9H14z"/></svg></a>
+          <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M12 2.2c3.2 0 3.6 0 4.9.1 1.2.1 1.8.3 2.2.4.6.2 1 .5 1.4.9.4.4.7.8.9 1.4.2.4.4 1 .4 2.2.1 1.3.1 1.7.1 4.9s0 3.6-.1 4.9c-.1 1.2-.3 1.8-.4 2.2-.2.6-.5 1-.9 1.4-.4.4-.8.7-1.4.9-.4.2-1 .4-2.2.4-1.3.1-1.7.1-4.9.1s-3.6 0-4.9-.1c-1.2-.1-1.8-.3-2.2-.4-.6-.2-1-.5-1.4-.9-.4-.4-.7-.8-.9-1.4-.2-.4-.4-1-.4-2.2C2.2 15.6 2.2 15.2 2.2 12s0-3.6.1-4.9c.1-1.2.3-1.8.4-2.2.2-.6.5-1 .9-1.4.4-.4.8-.7 1.4-.9.4-.2 1-.4 2.2-.4 1.3-.1 1.7-.1 4.8-.1zM12 5.8a6.2 6.2 0 1 0 0 12.4 6.2 6.2 0 0 0 0-12.4zm0 10.2a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.4-10.4a1.4 1.4 0 1 1-2.9 0 1.4 1.4 0 0 1 2.9 0z"/></svg></a>
+          <a href="#" aria-label="YouTube"><svg viewBox="0 0 24 24"><path d="M23 7.5a3 3 0 0 0-2.1-2.1C19 4.9 12 4.9 12 4.9s-7 0-8.9.5A3 3 0 0 0 1 7.5C.5 9.4.5 12 .5 12s0 2.6.5 4.5a3 3 0 0 0 2.1 2.1c1.9.5 8.9.5 8.9.5s7 0 8.9-.5a3 3 0 0 0 2.1-2.1c.5-1.9.5-4.5.5-4.5s0-2.6-.5-4.5zM9.7 15.4V8.6l6 3.4z"/></svg></a>
+        </div>
+      </div>
+      <div class="foot-col">
+        <h4>Servisio</h4>
+        <ul>
+          <li><a href="#pakete">Pakete di emergensia</a></li>
+          <li><a href="#prepara">Kon pa prepará</a></li>
+          <li><a href="#riesgonan">Anunsionan importante</a></li>
+          <li><a href="#informashon">Numbernan importante</a></li>
+          <li><a href="#informashon">FAQ</a></li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <h4>Tokante e site</h4>
+        <ul>
+          <li><a href="#riesgonan">Profil di riesgo</a></li>
+          <li><a href="#struktura">Struktura di krísis</a></li>
+          <li><a href="#kompanianan">Kompanianan</a></li>
+          <li><a href="#">Organisashon di Krísis (CRBO)</a></li>
+          <li><a href="#">Mediaroom & Toolkit</a></li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <h4>Kontakto</h4>
+        <ul class="foot-contact">
+          <li>🌐 gobiernu.cw</li>
+          <li>📞 564 0440</li>
+          <li>🏛 Gobièrnu di Kòrsou</li>
+          <li style="margin-top:.6rem;"><span class="lang" style="display:inline-block;">PAP · NL · EN</span></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 Ami Ta Prepará — Gobièrnu di Kòrsou. Tur derecho reservá.</span>
+      <span>amitaprepara.cw</span>
+    </div>
+  </div>
+</footer>
+
+<button class="totop" id="totop" aria-label="Bai ariba">
+  <svg viewBox="0 0 24 24"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+</button>
+
+<script>
+  // sticky header shadow
+  const header = document.getElementById('header');
+  const totop = document.getElementById('totop');
+  window.addEventListener('scroll', () => {
+    const y = window.scrollY;
+    header.classList.toggle('scrolled', y > 20);
+    totop.classList.toggle('show', y > 600);
+  });
+  totop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+  // mobile nav
+  const burger = document.getElementById('burger');
+  const navlinks = document.getElementById('navlinks');
+  burger.addEventListener('click', () => navlinks.classList.toggle('open'));
+  navlinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navlinks.classList.remove('open')));
+
+  // accordions (risks + faq) — independent toggle
+  document.querySelectorAll('.accordion').forEach(acc => {
+    acc.querySelectorAll('.acc-btn').forEach(btn => {
+      btn.addEventListener('click', () => btn.closest('.acc').classList.toggle('open'));
+    });
+  });
+
+  // scroll reveal
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach((el, i) => {
+    el.style.transitionDelay = (i % 4 * 0.06) + 's';
+    io.observe(el);
+  });
+</script>
+</body>
+</html>
