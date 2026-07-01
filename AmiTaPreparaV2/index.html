@@ -554,6 +554,12 @@
   }
   @media (max-width: 720px) {
     html { scroll-padding-top: 78px; }
+    /* narrow viewport: text spans full width, so darken the artwork evenly
+       to keep the headline crisp for all (senior) readers */
+    .hero { background-position: right -60px center; }
+    .hero::before {
+      background: linear-gradient(180deg, rgba(26,26,26,.86) 0%, rgba(26,26,26,.72) 100%);
+    }
     /* backdrop-filter creates a containing block that would trap the fixed
        nav panel inside the header — drop it (keep a solid bg) on mobile */
     header.site { -webkit-backdrop-filter: none; backdrop-filter: none; background: var(--white); }
