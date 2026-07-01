@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Ami Ta Prepará — Sea prepará pa kualke riesgo òf krísis</title>
+<title>Ami Ta Prepará: Sea prepará pa kualke riesgo òf krísis</title>
 <meta name="description" content="Página ofisial di Gobièrnu di Kòrsou dediká na konsientisashon riba riesgo i krísis i kon pa prepará pa nan." />
 <link rel="icon" href="img/favicon.svg" type="image/svg+xml" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -193,9 +193,6 @@
     text-transform: uppercase; letter-spacing: .18em; color: var(--yellow);
     margin-bottom: 1.3rem;
   }
-  .hero .eyebrow::before {
-    content: ""; width: 26px; height: 2px; background: var(--yellow);
-  }
   .hero h1 {
     font-family: var(--font-display);
     font-size: clamp(2.6rem, 6.4vw, 5rem);
@@ -268,9 +265,8 @@
   .intro-grid { display: grid; grid-template-columns: 1.3fr .9fr; gap: 2.6rem; align-items: center; }
   .intro-grid p { color: var(--dark); margin-bottom: 1rem; font-size: 1.02rem; }
   .threeday {
-    background: var(--black); color: var(--white); border-radius: 8px;
+    background: var(--black); color: var(--white); border-radius: 12px;
     padding: 2rem; position: relative; overflow: hidden;
-    border-left: 6px solid var(--yellow);
   }
   .threeday .big { font-family: var(--font-display); color: var(--yellow); font-size: clamp(3rem,7vw,4.5rem); line-height: .9; }
   .threeday .big small { font-size: .9rem; color: var(--white); display: block; font-family: var(--font-head); letter-spacing: .1em; text-transform: uppercase; margin-top:.4rem;}
@@ -406,6 +402,7 @@
   .phase .ph-tag { display: inline-flex; align-items: center; gap: .5rem; font-family: var(--font-head); font-weight: 800; font-size: .8rem; text-transform: uppercase; letter-spacing: .08em; padding: .4rem .9rem; border-radius: 40px; margin-bottom: 1.1rem; }
   .phase.cold .ph-tag { background: #e7eef5; color: #2b5d86; }
   .phase.hot .ph-tag { background: var(--yellow); color: var(--black); }
+  .phase .ph-tag svg { width: 15px; height: 15px; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
   .phase h3 { font-family: var(--font-display); font-size: 1.5rem; text-transform: uppercase; margin-bottom: .7rem; }
   .phase.hot h3 { color: var(--white); }
   .phase p { font-size: .96rem; color: var(--dark); }
@@ -413,7 +410,7 @@
   .phase .flame { position: absolute; right: -16px; top: -16px; width: 100px; height: 110px; clip-path: var(--hex); opacity: .12; }
   .phase.cold .flame { background: #2b5d86; }
   .phase.hot .flame { background: var(--yellow); opacity: .16; }
-  .struct-note { margin-top: 1.6rem; background: var(--paper); border-left: 5px solid var(--yellow); padding: 1.3rem 1.5rem; border-radius: 0 8px 8px 0; }
+  .struct-note { margin-top: 1.6rem; background: var(--paper); border: 1px solid var(--gray-line); padding: 1.4rem 1.6rem; border-radius: 12px; }
   .struct-note p { color: var(--dark); font-size: .95rem; }
   .struct-note b { color: var(--black); }
 
@@ -474,7 +471,8 @@
   .foot-col ul { list-style: none; display: flex; flex-direction: column; gap: .6rem; }
   .foot-col a { color: #c4c4c4; font-size: .92rem; transition: color .15s; }
   .foot-col a:hover { color: var(--white); }
-  .foot-contact li { color: #c4c4c4; font-size: .92rem; display: flex; gap: .5rem; align-items: center; }
+  .foot-contact li { color: #c4c4c4; font-size: .92rem; display: flex; gap: .6rem; align-items: center; }
+  .foot-contact svg { width: 16px; height: 16px; flex: none; stroke: var(--yellow); fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
   .foot-bottom { border-top: 1px solid #2c2c2c; margin-top: 2.6rem; padding-top: 1.4rem; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 1rem; color: #8a8a8a; font-size: .82rem; }
 
   /* back to top */
@@ -513,7 +511,12 @@
     .kit-list { grid-template-columns: 1fr; }
     .risk-list { grid-template-columns: 1fr; }
     .check-items { grid-template-columns: 1fr; }
-    .hexgrid { max-width: 320px; }
+    /* compact stat cluster: smaller, aligned 2x2 (drop the staggered offset) */
+    .hexgrid { max-width: 264px; gap: .6rem; margin-inline: auto; }
+    .hexgrid .stat:nth-child(even) { margin-top: 0; }
+    .stat { padding: .6rem; }
+    .stat .num { font-size: 1.9rem; }
+    .stat .lab { font-size: .6rem; margin-top: .25rem; }
     /* generous caps so wrapped content never clips on narrow screens */
     .acc.open .acc-panel { max-height: 1600px; }
     .faq .acc.open .acc-panel { max-height: 1200px; }
@@ -571,7 +574,7 @@
     <div class="hero-copy">
       <span class="eyebrow">Página ofisial · Gobièrnu di Kòrsou</span>
       <h1>Sea <span class="y">prepará</span><br/>pa kualke krísis</h1>
-      <p class="lead">Bon biní riba amitaprepara.cw — Gobièrnu su página ofisial dediká na konsientisashon riba diferente riesgo i krísis ku por afektá nos bida diario, i kon pa prepará pa nan.</p>
+      <p class="lead">Bon biní riba amitaprepara.cw. Gobièrnu su página ofisial dediká na konsientisashon riba diferente riesgo i krísis ku por afektá nos bida diario, i kon pa prepará pa nan.</p>
       <div class="hero-cta">
         <a class="btn btn-primary" href="#prepara">Kon pa prepará <span class="arr">→</span></a>
         <a class="btn btn-ghost" href="#riesgonan">Mira e 35 riesgonan</a>
@@ -595,8 +598,8 @@
       <div class="reveal">
         <span class="kicker"><span class="dot"></span> Dikon prepará</span>
         <h2 class="title">Preparashon ta kuminsá ku abo mes</h2>
-        <p>Gobièrnu di Kòrsou a inventarisá <b>35 riesgo</b> ku por afektá nos komunidat — riesgonan ku por tin impakto direkto riba bo bida i di bo sernan kerí. ‘Ami Ta Prepará’ ta sirbi komo un guia pa abo i bo famia sa kon pa prepará i kiko mester tene kuenta kuné durante kualke situashon di riesgo òf krísis.</p>
-        <p>Den situashonnan di kalamidat, servisionan di promé asistensia lo duna prioridat na e gruponan vulnerabel — hende grandi, mucha i personanan ku desabilidat — i esnan afektá. Por sosodé tambe ku tin retraso pa yega den tur área pa motibu di opstákulo òf situashonnan demasiado peligroso.</p>
+        <p>Gobièrnu di Kòrsou a inventarisá <b>35 riesgo</b> ku por afektá nos komunidat: riesgonan ku por tin impakto direkto riba bo bida i di bo sernan kerí. ‘Ami Ta Prepará’ ta sirbi komo un guia pa abo i bo famia sa kon pa prepará i kiko mester tene kuenta kuné durante kualke situashon di riesgo òf krísis.</p>
+        <p>Den situashonnan di kalamidat, servisionan di promé asistensia lo duna prioridat na e gruponan vulnerabel (hende grandi, mucha i personanan ku desabilidat) i esnan afektá. Por sosodé tambe ku tin retraso pa yega den tur área pa motibu di opstákulo òf situashonnan demasiado peligroso.</p>
       </div>
       <div class="threeday reveal">
         <div class="big">3<small>Dia prepará</small></div>
@@ -617,7 +620,7 @@
       <a class="card reveal" href="#pakete">
         <div class="card-ico"><svg viewBox="0 0 24 24"><path d="M3 7l9-4 9 4v10l-9 4-9-4z"/><path d="M3 7l9 4 9-4M12 11v10"/></svg></div>
         <h3>Pakete di emergensia</h3>
-        <p>Un lista di produktonan básiko nesesario den un situashon di krísis — e mínimo pa un persona pa dia.</p>
+        <p>Un lista di produktonan básiko nesesario den un situashon di krísis: e mínimo pa un persona pa dia.</p>
         <span class="more">Mira e lista <span class="arr">→</span></span>
       </a>
       <a class="card reveal" href="#prepara">
@@ -629,7 +632,7 @@
       <a class="card reveal" href="#riesgonan">
         <div class="card-ico"><svg viewBox="0 0 24 24"><path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/><path d="M12 9v4M12 17h.01"/></svg></div>
         <h3>Profil di riesgo</h3>
-        <p>E 35 riesgonan di Kòrsou, repartí den 7 kategoria — for di fenómeno di naturalesa te na eventonan geopolítiko.</p>
+        <p>E 35 riesgonan di Kòrsou, repartí den 7 kategoria, for di fenómeno di naturalesa te na eventonan geopolítiko.</p>
         <span class="more">Konosé nan tur <span class="arr">→</span></span>
       </a>
       <a class="card reveal" href="#kompanianan">
@@ -709,7 +712,7 @@
     <div class="sec-head reveal">
       <span class="kicker"><span class="dot"></span> Pakete di emergensia</span>
       <h2 class="title">Lista di pakete di emergensia esensial</h2>
-      <p class="lede">Sea prepará pa kualke situashon di emergensia. Esaki ta e mínimo nesesario — sòru pa bo pakete ta kla promé ku un situashon eskalá.</p>
+      <p class="lede">Sea prepará pa kualke situashon di emergensia. Esaki ta e mínimo nesesario. Sòru pa bo pakete ta kla promé ku un situashon eskalá.</p>
     </div>
     <div class="kit-grid">
       <div class="kit-list reveal">
@@ -760,7 +763,7 @@
     <div class="risk-intro">
       <div class="reveal">
         <p>Kada 5 aña Kòrsou ta hasi un análisis pa identifiká riesgonan ku por afektá bida diario. Esaki ta resultá den un ‘Profíl di Riesgo’: un lista ku e riesgonan di mas relevante pa Kòrsou.</p>
-        <p>Ta krea e profil basá riba dos fuente: un método internashonal di análisis hasí pa ekspertonan, i un sondeo bou di siudadanonan di loke nan ta sinti ku por ta e riesgonan di mas grandi. Despues ta presentá e lista na Konseho di Minister pa aprobashon — i asina e ta bira ofisial.</p>
+        <p>Ta krea e profil basá riba dos fuente: un método internashonal di análisis hasí pa ekspertonan, i un sondeo bou di siudadanonan di loke nan ta sinti ku por ta e riesgonan di mas grandi. Despues ta presentá e lista na Konseho di Minister pa aprobashon, i asina e ta bira ofisial.</p>
         <p>Pa kada riesgo identifiká tin otro maneho i preparashon nesesario. Riba e sepshon aki bo ta haña informashon tokante kada un riesgo, kiko abo por hasi i kiko Gobièrnu ta hasi.</p>
       </div>
       <div class="profile-card reveal">
@@ -785,7 +788,7 @@
         <div class="acc-panel"><div class="acc-inner"><ul class="risk-list">
           <li><span class="rn">1</span>Tormenta Tropikal / Orkan</li>
           <li><span class="rn">2</span>Áwaseru fuerte</li>
-          <li><span class="rn">3</span>Inundashon — Kiebro di dam</li>
+          <li><span class="rn">3</span>Inundashon / Kiebro di dam</li>
           <li><span class="rn">4</span>Daño di Welek</li>
           <li><span class="rn">5</span>Laman brutu / Olanan haltu</li>
           <li><span class="rn">6</span>Warwarú</li>
@@ -884,7 +887,7 @@
           <svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
         </button>
         <div class="acc-panel"><div class="acc-inner">
-          <p>Efektonan ku por presentá pa motibu di tenshon geopolítiko den region i otro partinan di mundu — por ehèmpel guera i aktonan di terorismo internashonal.</p>
+          <p>Efektonan ku por presentá pa motibu di tenshon geopolítiko den region i otro partinan di mundu, por ehèmpel guera i aktonan di terorismo internashonal.</p>
         </div></div>
       </div>
     </div>
@@ -902,15 +905,15 @@
     <div class="phases">
       <div class="phase cold reveal">
         <span class="flame"></span>
-        <span class="ph-tag">❄ Fase friu</span>
+        <span class="ph-tag"><svg viewBox="0 0 24 24"><line x1="2" y1="12" x2="22" y2="12"/><line x1="12" y1="2" x2="12" y2="22"/><path d="m20 16-4-4 4-4"/><path d="m4 8 4 4-4 4"/><path d="m16 4-4 4-4-4"/><path d="m8 20 4-4 4 4"/></svg>Fase friu</span>
         <h3>Vigilansia</h3>
         <p>Den e fase aki ta vigilá un situashon i ta konsidera esaki un riesgo potensial. Instansianan di Gobièrnu enkargá ku e riesgo spesífiko ta vigilá i prepará pa un eventual krísis.</p>
       </div>
       <div class="phase hot reveal">
         <span class="flame"></span>
-        <span class="ph-tag">🔥 Fase kayente</span>
+        <span class="ph-tag"><svg viewBox="0 0 24 24"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"/></svg>Fase kayente</span>
         <h3>Krísis dekretá</h3>
-        <p>Ta kuminsá na momentu ku Minister di Asuntunan General ta dekretá un krísis. E struktura normal di gobernashon ta paralisá temporalmente, i e Minister — alabes Promé Minister — ta kombertí den Komandante Supremo (Opperbevelhebber) ku ta tuma mando di henter pais.</p>
+        <p>Ta kuminsá na momentu ku Minister di Asuntunan General ta dekretá un krísis. E struktura normal di gobernashon ta paralisá temporalmente, i e Minister (alabes Promé Minister) ta kombertí den Komandante Supremo (Opperbevelhebber) ku ta tuma mando di henter pais.</p>
       </div>
     </div>
     <div class="struct-note reveal">
@@ -933,7 +936,7 @@
         <p>Pa bo organisashon ta semper bon prepará:</p>
         <ul>
           <li>Traha un plan di emergensia ku ta pensa riba kontinuashon di servisio (p.e. un “toke di keda”)</li>
-          <li>Traha un plan di asistensia — EHBO-kit, personal sertifiká i nùmbernan importante</li>
+          <li>Traha un plan di asistensia: EHBO-kit, personal sertifiká i nùmbernan importante</li>
           <li>Krea un lista di tur kolega i nan persona di kontakto, ku persona asigná pa guia (BHV)</li>
           <li>Traha un mapa di edifisio ku salidanan di emergensia i rutanan di evakuashon</li>
           <li>Inventarisá ekiponan, traha un plan di protekshon i sera un seguro</li>
@@ -980,13 +983,13 @@
         <button class="acc-btn">Dikon prepará?
           <svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
         </button>
-        <div class="acc-panel"><div class="acc-inner"><p>Den kaso di un riesgo òf krísis, Gobièrnu di Kòrsou tin un tim di maneho ku ta eskalá i atendé e krísis pa protehá pais i komunidat. Dependé di e situashon, lo duna asistensia promé na e grupo den mas nesesidat i di riesgo mas haltu. P'esei ta importante pa kada persona i famia por sòru pa nan mes pa por lo ménos tres dia — esaki ta krea espasio pa outoridat kompetente por duna instrukshon i yudansa konforme nesesidat.</p></div></div>
+        <div class="acc-panel"><div class="acc-inner"><p>Den kaso di un riesgo òf krísis, Gobièrnu di Kòrsou tin un tim di maneho ku ta eskalá i atendé e krísis pa protehá pais i komunidat. Dependé di e situashon, lo duna asistensia promé na e grupo den mas nesesidat i di riesgo mas haltu. P'esei ta importante pa kada persona i famia por sòru pa nan mes pa por lo ménos tres dia. Esaki ta krea espasio pa outoridat kompetente por duna instrukshon i yudansa konforme nesesidat.</p></div></div>
       </div>
       <div class="acc reveal">
         <button class="acc-btn">Kiko ami mester hasi?
           <svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
         </button>
-        <div class="acc-panel"><div class="acc-inner"><p>Komo siudadano di Kòrsou, ta rekomendabel pa kada persona prepará riba e riesgonan ku por tin impakto riba bo bida i di bo sernan kerí, durante henter aña. Preparashon ta enserá ku kada persona — ku ta den estado pa hasi esaki — mester por sòru pa nan mes durante e situashon, te na momentu ku e situashon normalisá òf por risibí yudansa si ta nesesario.</p></div></div>
+        <div class="acc-panel"><div class="acc-inner"><p>Komo siudadano di Kòrsou, ta rekomendabel pa kada persona prepará riba e riesgonan ku por tin impakto riba bo bida i di bo sernan kerí, durante henter aña. Preparashon ta enserá ku kada persona (ku ta den estado pa hasi esaki) mester por sòru pa nan mes durante e situashon, te na momentu ku e situashon normalisá òf por risibí yudansa si ta nesesario.</p></div></div>
       </div>
       <div class="acc reveal">
         <button class="acc-btn">Kiko Gobièrnu ta hasi?
@@ -1048,15 +1051,15 @@
       <div class="foot-col">
         <h4>Kontakto</h4>
         <ul class="foot-contact">
-          <li>🌐 gobiernu.cw</li>
-          <li>📞 564 0440</li>
-          <li>🏛 Gobièrnu di Kòrsou</li>
+          <li><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 0 20 15.3 15.3 0 0 1 0-20z"/></svg>gobiernu.cw</li>
+          <li><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>564 0440</li>
+          <li><svg viewBox="0 0 24 24"><line x1="3" y1="22" x2="21" y2="22"/><line x1="6" y1="18" x2="6" y2="11"/><line x1="10" y1="18" x2="10" y2="11"/><line x1="14" y1="18" x2="14" y2="11"/><line x1="18" y1="18" x2="18" y2="11"/><polygon points="12 2 20 7 4 7"/></svg>Gobièrnu di Kòrsou</li>
           <li style="margin-top:.6rem;"><span class="lang" style="display:inline-block;">PAP · NL · EN</span></li>
         </ul>
       </div>
     </div>
     <div class="foot-bottom">
-      <span>© 2026 Ami Ta Prepará — Gobièrnu di Kòrsou. Tur derecho reservá.</span>
+      <span>© 2026 Ami Ta Prepará · Gobièrnu di Kòrsou. Tur derecho reservá.</span>
       <span>amitaprepara.cw</span>
     </div>
   </div>

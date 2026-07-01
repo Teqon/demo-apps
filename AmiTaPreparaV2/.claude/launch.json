@@ -10,6 +10,16 @@
         "import sys; sys.path=[p for p in sys.path if p and 'AmiTaPrepara' not in p]; import os,functools,http.server,socketserver; D='/Users/rich/Documents/GitHub/demo-apps/AmiTaPreparaV2'; H=functools.partial(http.server.SimpleHTTPRequestHandler, directory=D); socketserver.TCPServer(('127.0.0.1', int(os.environ.get('PORT','4173'))), H).serve_forever()"
       ],
       "port": 4173
+    },
+    {
+      "name": "amitaprepara-preview",
+      "autoPort": true,
+      "runtimeExecutable": "python3",
+      "runtimeArgs": [
+        "-c",
+        "import sys; sys.path=[p for p in sys.path if p and 'AmiTaPrepara' not in p]; import os,functools,http.server,socketserver; D='/private/tmp/claude-501/-Users-rich-Documents-GitHub-demo-apps-AmiTaPreparaV2/5aadf78b-743e-41d1-b52e-e5ce818e9789/scratchpad/site'; H=functools.partial(http.server.SimpleHTTPRequestHandler, directory=D); socketserver.TCPServer(('127.0.0.1', int(os.environ.get('PORT','4174'))), H).serve_forever()"
+      ],
+      "port": 4174
     }
   ]
 }
