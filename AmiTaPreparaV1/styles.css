@@ -226,8 +226,8 @@ h3 {
   overflow: hidden;
   color: var(--white);
   background:
-    linear-gradient(100deg, rgba(26, 26, 26, 0.9) 0%, rgba(26, 26, 26, 0.78) 48%, rgba(26, 26, 26, 0.56) 100%),
-    url("img/hero-background-minimal.png") center / cover no-repeat;
+    linear-gradient(100deg, rgba(26, 26, 26, 0.82) 0%, rgba(26, 26, 26, 0.54) 50%, rgba(26, 26, 26, 0.24) 100%),
+    url("img/hero-background-light.png") center / cover no-repeat;
 }
 
 .hero-inner {
