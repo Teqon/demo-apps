@@ -51,7 +51,11 @@
     line-height: 1.45;
     -webkit-font-smoothing: antialiased;
     overflow-x: hidden;
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+    -webkit-tap-highlight-color: rgba(255,210,42,.35);
   }
+  body.nav-open { overflow: hidden; }
 
   h1, h2, h3, h4, .display { font-family: var(--font-head); }
   ::selection { background: var(--yellow); color: var(--black); }
@@ -158,8 +162,16 @@
     border: 1.5px solid var(--gray-line); border-radius: 40px;
     padding: .35rem .7rem; color: var(--dark); cursor: pointer; background: var(--white);
   }
-  .burger { display: none; background: none; border: none; cursor: pointer; padding: .3rem; }
-  .burger span { display: block; width: 26px; height: 3px; background: var(--black); margin: 5px 0; border-radius: 2px; transition: .3s; }
+  .burger { display: none; background: none; border: none; cursor: pointer; padding: .4rem; -webkit-tap-highlight-color: transparent; }
+  .burger span { display: block; width: 26px; height: 3px; background: var(--black); margin: 5px 0; border-radius: 2px; transition: transform .3s, opacity .2s; }
+  .burger.open span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+  .burger.open span:nth-child(2) { opacity: 0; }
+  .burger.open span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+  .nav-backdrop {
+    position: fixed; inset: 0; background: rgba(0,0,0,.45); z-index: 55;
+    opacity: 0; visibility: hidden; transition: opacity .3s, visibility .3s;
+  }
+  .nav-backdrop.show { opacity: 1; visibility: visible; }
 
   /* ============================================================
      HERO
@@ -478,8 +490,8 @@
      RESPONSIVE
      ============================================================ */
   @media (max-width: 980px) {
-    .hero .wrap { grid-template-columns: 1fr; }
-    .hero-aside { order: -1; max-width: 360px; }
+    .hero .wrap { grid-template-columns: 1fr; gap: 2.4rem; }
+    .hero-aside { order: 2; max-width: 360px; justify-self: start; }
     .cards { grid-template-columns: repeat(2, 1fr); }
     .steps { grid-template-columns: 1fr; }
     .kit-grid, .intro-grid, .risk-intro, .comp-grid, .phases { grid-template-columns: 1fr; }
@@ -487,22 +499,37 @@
     .tips { grid-template-columns: 1fr; }
   }
   @media (max-width: 720px) {
-    .nav-links { position: fixed; inset: 0 0 0 auto; width: min(80vw, 320px); background: var(--white); flex-direction: column; align-items: stretch; padding: 5rem 1.4rem 2rem; gap: .3rem; transform: translateX(100%); transition: transform .3s; box-shadow: -10px 0 40px rgba(0,0,0,.2); }
+    html { scroll-padding-top: 78px; }
+    /* backdrop-filter creates a containing block that would trap the fixed
+       nav panel inside the header — drop it (keep a solid bg) on mobile */
+    header.site { -webkit-backdrop-filter: none; backdrop-filter: none; background: var(--white); }
+    .nav-links { position: fixed; inset: 0 0 0 auto; width: min(82vw, 320px); background: var(--white); flex-direction: column; align-items: stretch; padding: 5rem 1.4rem 2rem; gap: .3rem; transform: translateX(100%); transition: transform .3s; box-shadow: -10px 0 40px rgba(0,0,0,.2); z-index: 65; overflow-y: auto; }
     .nav-links.open { transform: none; }
-    .nav-links a { padding: .9rem .7rem; border-bottom: 1px solid var(--gray-line); }
+    .nav-links a { padding: .95rem .7rem; border-bottom: 1px solid var(--gray-line); }
     .nav-links a::after { display: none; }
+    .nav-cta { text-align: center; margin-top: .6rem; }
     .burger { display: block; margin-left: auto; z-index: 70; }
     .lang { display: none; }
-    .kit-list, .risk-list, .check-items, .alertbar span.long { grid-template-columns: 1fr; }
     .kit-list { grid-template-columns: 1fr; }
     .risk-list { grid-template-columns: 1fr; }
     .check-items { grid-template-columns: 1fr; }
     .hexgrid { max-width: 320px; }
+    /* generous caps so wrapped content never clips on narrow screens */
+    .acc.open .acc-panel { max-height: 1600px; }
+    .faq .acc.open .acc-panel { max-height: 1200px; }
+    .band .wrap { padding-block: 2.4rem; }
+    .band .hero-cta { width: 100%; }
   }
   @media (max-width: 480px) {
     .cards { grid-template-columns: 1fr; }
     .foot-grid { grid-template-columns: 1fr; }
-    .alertbar .wrap { font-size: .74rem; }
+    .alertbar .wrap { font-size: .74rem; align-items: flex-start; }
+    /* stack CTAs full-width for comfortable tapping */
+    .hero-cta { flex-direction: column; align-items: stretch; }
+    .hero-cta .btn { justify-content: center; width: 100%; }
+    .btn { padding: .95rem 1.2rem; }
+    .threeday, .kit-aside, .profile-card, .phase, .comp-block, .checklist { padding: 1.5rem; }
+    .foot-bottom { flex-direction: column; gap: .4rem; }
   }
 </style>
 </head>
@@ -536,6 +563,7 @@
     <button class="burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
   </div>
 </header>
+<div class="nav-backdrop" id="navBackdrop"></div>
 
 <!-- ============ HERO ============ -->
 <section class="hero honey-dark" id="home">
@@ -1052,8 +1080,18 @@
   // mobile nav
   const burger = document.getElementById('burger');
   const navlinks = document.getElementById('navlinks');
-  burger.addEventListener('click', () => navlinks.classList.toggle('open'));
-  navlinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navlinks.classList.remove('open')));
+  const navBackdrop = document.getElementById('navBackdrop');
+  const setNav = (open) => {
+    navlinks.classList.toggle('open', open);
+    burger.classList.toggle('open', open);
+    navBackdrop.classList.toggle('show', open);
+    document.body.classList.toggle('nav-open', open);
+    burger.setAttribute('aria-expanded', open ? 'true' : 'false');
+  };
+  burger.addEventListener('click', () => setNav(!navlinks.classList.contains('open')));
+  navBackdrop.addEventListener('click', () => setNav(false));
+  navlinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => setNav(false)));
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') setNav(false); });
 
   // accordions (risks + faq) — independent toggle
   document.querySelectorAll('.accordion').forEach(acc => {
