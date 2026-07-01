@@ -154,6 +154,8 @@ h3 {
 
 .brand img {
   width: clamp(150px, 19vw, 230px);
+  max-height: 74px;
+  object-fit: contain;
   padding: 10px 0;
 }
 
@@ -1078,6 +1080,7 @@ h3 {
 
   .brand img {
     width: clamp(128px, 42vw, 170px);
+    max-height: 58px;
     padding: 7px 0;
   }
 
