@@ -200,10 +200,14 @@
   /* ============================================================
      HERO
      ============================================================ */
-  .hero { position: relative; color: var(--white); overflow: hidden; }
+  .hero {
+    position: relative; color: var(--white); overflow: hidden;
+    background: var(--black) url("img/hero-background-minimal.png") right center / cover no-repeat;
+  }
+  /* left-side scrim keeps the headline readable over the artwork */
   .hero::before {
     content: ""; position: absolute; inset: 0;
-    background: radial-gradient(120% 90% at 80% -10%, rgba(255,210,42,.18), transparent 55%);
+    background: linear-gradient(90deg, rgba(26,26,26,.92) 0%, rgba(26,26,26,.72) 42%, rgba(26,26,26,.15) 70%, transparent 100%);
     pointer-events: none;
   }
   .hero .wrap {
