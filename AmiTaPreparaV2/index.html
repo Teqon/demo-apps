@@ -129,8 +129,8 @@
     padding-block: .8rem; transition: padding .3s;
   }
   header.site.scrolled .nav { padding-block: .5rem; }
-  .brand img { height: 42px; width: auto; transition: height .3s; }
-  header.site.scrolled .brand img { height: 36px; }
+  .brand img { height: 56px; width: auto; transition: height .3s; }
+  header.site.scrolled .brand img { height: 48px; }
   .nav-links {
     display: flex; gap: .2rem; margin-left: auto; list-style: none;
     align-items: center;
@@ -189,7 +189,7 @@
   }
   .hero .eyebrow {
     display: inline-flex; align-items: center; gap: .55rem;
-    font-family: var(--font-head); font-weight: 700; font-size: .76rem;
+    font-family: var(--font-head); font-weight: 700; font-size: 0.88rem;
     text-transform: uppercase; letter-spacing: .18em; color: var(--yellow);
     margin-bottom: 1.3rem;
   }
@@ -233,7 +233,7 @@
   .stat.fill { background: var(--yellow); color: var(--black); }
   .stat.outline { background: var(--dark); color: var(--white); border: 1px solid rgba(255,255,255,.12); }
   .stat .num { font-family: var(--font-display); font-size: clamp(1.6rem, 3.4vw, 2.5rem); line-height: 1; }
-  .stat .lab { font-family: var(--font-head); font-weight: 600; font-size: .68rem; text-transform: uppercase; letter-spacing: .06em; margin-top: .4rem; }
+  .stat .lab { font-family: var(--font-head); font-weight: 600; font-size: 0.82rem; text-transform: uppercase; letter-spacing: .06em; margin-top: .4rem; }
   .stat.outline .lab { color: var(--gray); }
 
   /* ============================================================
@@ -255,7 +255,7 @@
   }
   section.on-dark { color: var(--white); }
   section.on-dark h2.title { color: var(--white); }
-  .lede { color: var(--dark); font-size: 1.05rem; margin-top: 1rem; max-width: 65ch; }
+  .lede { color: var(--dark); font-size: 1.1rem; margin-top: 1rem; max-width: 65ch; }
   section.on-dark .lede { color: #cfcfcf; }
   .on-paper { background: var(--paper); }
 
@@ -263,14 +263,14 @@
      INTRO STRIP — "3 dia" callout
      ============================================================ */
   .intro-grid { display: grid; grid-template-columns: 1.3fr .9fr; gap: 2.6rem; align-items: center; }
-  .intro-grid p { color: var(--dark); margin-bottom: 1rem; font-size: 1.02rem; }
+  .intro-grid p { color: var(--dark); margin-bottom: 1rem; font-size: 1.15rem; }
   .threeday {
     background: var(--black); color: var(--white); border-radius: 12px;
     padding: 2rem; position: relative; overflow: hidden;
   }
   .threeday .big { font-family: var(--font-display); color: var(--yellow); font-size: clamp(3rem,7vw,4.5rem); line-height: .9; }
   .threeday .big small { font-size: .9rem; color: var(--white); display: block; font-family: var(--font-head); letter-spacing: .1em; text-transform: uppercase; margin-top:.4rem;}
-  .threeday p { color: #d2d2d2; margin-top: 1rem; font-size: .96rem; }
+  .threeday p { color: #d2d2d2; margin-top: 1rem; font-size: 1.05rem; }
 
   /* ============================================================
      QUICK CARDS (denkvooruit-style icon menu)
@@ -294,9 +294,9 @@
   .card:hover .card-ico { background: var(--yellow); }
   .card-ico svg { width: 32px; height: 32px; stroke: var(--yellow); fill: none; stroke-width: 2; transition: stroke .2s; }
   .card:hover .card-ico svg { stroke: var(--black); }
-  .card h3 { font-family: var(--font-head); font-weight: 800; font-size: 1.18rem; text-transform: uppercase; position: relative; z-index: 1; }
-  .card p { color: var(--dark); font-size: .92rem; flex: 1; position: relative; z-index: 1; }
-  .card .more { font-family: var(--font-head); font-weight: 700; font-size: .82rem; text-transform: uppercase; letter-spacing: .04em; color: var(--black); display: inline-flex; gap: .4rem; position: relative; z-index: 1; }
+  .card h3 { font-family: var(--font-head); font-weight: 800; font-size: 1.3rem; text-transform: uppercase; position: relative; z-index: 1; }
+  .card p { color: var(--dark); font-size: 1.05rem; flex: 1; position: relative; z-index: 1; }
+  .card .more { font-family: var(--font-head); font-weight: 700; font-size: 0.92rem; text-transform: uppercase; letter-spacing: .04em; color: var(--black); display: inline-flex; gap: .4rem; position: relative; z-index: 1; }
   .card .more .arr { color: var(--yellow-deep); transition: transform .2s; }
   .card:hover .more .arr { transform: translateX(4px); }
 
@@ -319,11 +319,11 @@
   }
   .step-top svg.deco { position: absolute; right: -10px; bottom: -14px; width: 92px; height: 92px; stroke: rgba(255,210,42,.5); fill: none; stroke-width: 1.6; }
   .step-body { padding: 1.5rem 1.6rem 1.8rem; flex: 1; }
-  .step-body h3 { font-family: var(--font-head); font-weight: 800; font-size: 1.2rem; text-transform: uppercase; margin-bottom: .7rem; }
-  .step-body .tag { font-family: var(--font-head); font-weight: 700; font-size: .72rem; letter-spacing: .12em; text-transform: uppercase; color: var(--yellow-deep); display: block; margin-bottom: .5rem; }
-  .step-body p { color: var(--dark); font-size: .95rem; margin-bottom: .8rem; }
+  .step-body h3 { font-family: var(--font-head); font-weight: 800; font-size: 1.35rem; text-transform: uppercase; margin-bottom: .7rem; }
+  .step-body .tag { font-family: var(--font-head); font-weight: 700; font-size: 0.85rem; letter-spacing: .12em; text-transform: uppercase; color: var(--yellow-deep); display: block; margin-bottom: .5rem; }
+  .step-body p { color: var(--dark); font-size: 1.08rem; margin-bottom: .8rem; }
   .step-body ul { list-style: none; display: flex; flex-direction: column; gap: .55rem; }
-  .step-body li { display: flex; gap: .6rem; font-size: .9rem; color: var(--dark); }
+  .step-body li { display: flex; gap: .6rem; font-size: 1.02rem; color: var(--dark); }
   .step-body li::before { content: ""; flex: none; width: 14px; height: 16px; margin-top: 3px; clip-path: var(--hex); background: var(--yellow); }
 
   /* ============================================================
@@ -341,8 +341,8 @@
   .kit-item .ico svg { width: 22px; height: 22px; stroke: var(--black); fill: none; stroke-width: 2; }
   .kit-item span { font-family: var(--font-head); font-weight: 600; font-size: .92rem; }
   .kit-aside { background: var(--yellow); color: var(--black); border-radius: 12px; padding: 1.8rem; }
-  .kit-aside h3 { font-family: var(--font-display); font-size: 1.4rem; text-transform: uppercase; line-height: 1; margin-bottom: .8rem; }
-  .kit-aside p { font-size: .94rem; margin-bottom: 1rem; }
+  .kit-aside h3 { font-family: var(--font-display); font-size: 1.55rem; text-transform: uppercase; line-height: 1; margin-bottom: .8rem; }
+  .kit-aside p { font-size: 1.07rem; margin-bottom: 1rem; }
   .kit-aside .note { font-size: .82rem; border-top: 1.5px solid rgba(0,0,0,.2); padding-top: 1rem; font-weight: 500; }
 
   /* ---------- tips inline ---------- */
@@ -508,6 +508,7 @@
     .nav-cta { text-align: center; margin-top: .6rem; }
     .burger { display: block; margin-left: auto; z-index: 70; }
     .lang { display: none; }
+    .hero-aside { display: none; }
     .kit-list { grid-template-columns: 1fr; }
     .risk-list { grid-template-columns: 1fr; }
     .check-items { grid-template-columns: 1fr; }
