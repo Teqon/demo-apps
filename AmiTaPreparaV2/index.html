@@ -42,7 +42,7 @@
 
   * { box-sizing: border-box; margin: 0; padding: 0; }
 
-  html { scroll-behavior: smooth; scroll-padding-top: 130px; }
+  html { scroll-behavior: smooth; scroll-padding-top: 160px; }
   @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
 
   body {
@@ -139,8 +139,9 @@
   /* ============================================================
      HEADER / NAV
      ============================================================ */
+  /* alert bar + header scroll together, stuck to the top */
+  .site-top { position: sticky; top: 0; z-index: 60; }
   header.site {
-    position: sticky; top: 0; z-index: 60;
     background: rgba(255,255,255,.92);
     backdrop-filter: saturate(140%) blur(10px);
     border-bottom: 1px solid var(--gray-line);
@@ -167,7 +168,7 @@
   }
   .nav-links a::after {
     content: ""; position: absolute; left: .7rem; right: .7rem; bottom: .3rem;
-    height: 3px; background: var(--yellow); transform: scaleX(0);
+    height: 2px; background: var(--black); transform: scaleX(0);
     transform-origin: left; transition: transform .25s;
   }
   .nav-links a:hover::after { transform: scaleX(1); }
@@ -222,9 +223,9 @@
     margin-bottom: 1.3rem;
   }
   .hero h1 {
-    font-family: var(--font-display);
-    font-size: clamp(2.6rem, 6.4vw, 5rem);
-    line-height: .96; letter-spacing: -.01em; text-transform: uppercase;
+    font-family: var(--font-head); font-weight: 700;
+    font-size: clamp(2.3rem, 5.4vw, 4.2rem);
+    line-height: 1.04; letter-spacing: -.02em;
     margin-bottom: 1.3rem;
   }
   .hero h1 .y { color: var(--yellow); }
@@ -278,8 +279,8 @@
   .kicker .dot { width: 18px; height: 18px; clip-path: var(--hex); background: var(--yellow); display: inline-block; }
   section.on-dark .kicker { color: var(--yellow); }
   h2.title {
-    font-family: var(--font-display); text-transform: uppercase;
-    font-size: clamp(1.9rem, 4.3vw, 3rem); line-height: 1.02; letter-spacing: -.005em;
+    font-family: var(--font-head); font-weight: 700;
+    font-size: clamp(1.7rem, 3.6vw, 2.5rem); line-height: 1.08; letter-spacing: -.015em;
   }
   section.on-dark { color: var(--white); }
   section.on-dark h2.title { color: var(--white); }
@@ -322,7 +323,7 @@
   .card:hover .card-ico { background: var(--yellow); }
   .card-ico svg { width: 32px; height: 32px; stroke: var(--yellow); fill: none; stroke-width: 2; transition: stroke .2s; }
   .card:hover .card-ico svg { stroke: var(--black); }
-  .card h3 { font-family: var(--font-head); font-weight: 800; font-size: 1.3rem; text-transform: uppercase; position: relative; z-index: 1; }
+  .card h3 { font-family: var(--font-head); font-weight: 700; font-size: 1.25rem; position: relative; z-index: 1; }
   .card p { color: var(--dark); font-size: 1.05rem; flex: 1; position: relative; z-index: 1; }
   .card .more { font-family: var(--font-head); font-weight: 700; font-size: 0.92rem; text-transform: uppercase; letter-spacing: .04em; color: var(--black); display: inline-flex; gap: .4rem; position: relative; z-index: 1; }
   .card .more .arr { color: var(--yellow-deep); transition: transform .2s; }
@@ -347,7 +348,7 @@
   }
   .step-top svg.deco { position: absolute; right: -10px; bottom: -14px; width: 92px; height: 92px; stroke: rgba(255,210,42,.5); fill: none; stroke-width: 1.6; }
   .step-body { padding: 1.5rem 1.6rem 1.8rem; flex: 1; }
-  .step-body h3 { font-family: var(--font-head); font-weight: 800; font-size: 1.35rem; text-transform: uppercase; margin-bottom: .7rem; }
+  .step-body h3 { font-family: var(--font-head); font-weight: 700; font-size: 1.3rem; margin-bottom: .7rem; }
   .step-body .tag { font-family: var(--font-head); font-weight: 800; font-size: 0.85rem; letter-spacing: .12em; text-transform: uppercase; color: var(--black); display: block; margin-bottom: .5rem; }
   .step-body p { color: var(--dark); font-size: 1.08rem; margin-bottom: .8rem; }
   .step-body ul { list-style: none; display: flex; flex-direction: column; gap: .55rem; }
@@ -369,7 +370,7 @@
   .kit-item .ico svg { width: 22px; height: 22px; stroke: var(--black); fill: none; stroke-width: 2; }
   .kit-item span { font-family: var(--font-head); font-weight: 600; font-size: .92rem; }
   .kit-aside { background: var(--yellow); color: var(--black); border-radius: 12px; padding: 1.8rem; }
-  .kit-aside h3 { font-family: var(--font-display); font-size: 1.55rem; text-transform: uppercase; line-height: 1; margin-bottom: .8rem; }
+  .kit-aside h3 { font-family: var(--font-head); font-weight: 700; font-size: 1.4rem; line-height: 1.1; margin-bottom: .8rem; }
   .kit-aside p { font-size: 1.07rem; margin-bottom: 1rem; }
   .kit-aside .note { font-size: .82rem; border-top: 1.5px solid rgba(0,0,0,.2); padding-top: 1rem; font-weight: 500; }
 
@@ -378,36 +379,74 @@
   .tip { display: flex; gap: 1rem; background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.09); border-radius: 10px; padding: 1.3rem; }
   .tip .ico { width: 46px; height: 50px; flex: none; clip-path: var(--hex); background: rgba(255,210,42,.18); display: grid; place-content: center; }
   .tip .ico svg { width: 24px; height: 24px; stroke: var(--yellow); fill: none; stroke-width: 1.8; }
-  .tip h4 { font-family: var(--font-head); font-weight: 700; font-size: 1rem; text-transform: uppercase; margin-bottom: .35rem; }
+  .tip h4 { font-family: var(--font-head); font-weight: 700; font-size: 1.05rem; margin-bottom: .35rem; }
   .tip p { color: #c9c9c9; font-size: .9rem; }
 
   /* ============================================================
-     FLYER DOWNLOAD
+     DOWNLOADABLE DOCUMENTS
      ============================================================ */
-  .flyer-section { padding-block: 4rem; background: var(--paper); }
-  .flyer-container {
-    background: var(--white); border: 2px solid var(--gray-line); border-radius: 16px;
-    padding: 2.4rem; max-width: 460px; margin: 0 auto;
+  .docs-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(270px, 1fr)); gap: 1.4rem; }
+  .doc-card {
+    background: var(--white); border: 1px solid var(--gray-line); border-radius: 12px;
+    padding: 1.6rem; display: flex; flex-direction: column; gap: .8rem;
   }
-  .flyer-preview {
-    display: flex; flex-direction: column; align-items: center; text-align: center; gap: 1.2rem;
+  .doc-ico {
+    width: 52px; height: 52px; border-radius: 10px; flex: none;
+    background: var(--paper); border: 1px solid var(--gray-line);
+    display: grid; place-content: center; color: var(--dark);
   }
-  .flyer-icon {
-    width: 100px; height: 100px; background: rgba(255,210,42,.1);
-    border-radius: 12px; display: grid; place-content: center; color: var(--yellow);
-  }
-  .flyer-preview h3 { font-family: var(--font-head); font-weight: 800; font-size: 1.3rem; text-transform: uppercase; color: var(--black); }
-  .flyer-preview p { color: var(--dark); font-size: 1rem; margin-bottom: .4rem; }
+  .doc-ico svg { width: 26px; height: 26px; stroke: currentColor; fill: none; stroke-width: 1.7; }
+  .doc-card h3 { font-family: var(--font-head); font-weight: 700; font-size: 1.15rem; }
+  .doc-card p { color: var(--dark); font-size: 1rem; flex: 1; }
+  .doc-meta { font-size: .85rem; color: #6b6b6b; }
   .btn-download {
+    align-self: flex-start;
     display: inline-flex; align-items: center; gap: .6rem;
-    background: var(--yellow); color: var(--black); padding: .9rem 1.6rem; border-radius: 8px;
-    font-family: var(--font-head); font-weight: 800; font-size: 0.92rem; text-transform: uppercase;
-    letter-spacing: .04em; text-decoration: none; border: 2px solid var(--black);
-    box-shadow: 3px 3px 0 var(--black); transition: transform .12s, box-shadow .12s;
-    cursor: pointer;
+    background: var(--yellow); color: var(--black); padding: .8rem 1.4rem; border-radius: 8px;
+    font-family: var(--font-head); font-weight: 700; font-size: 0.95rem;
+    text-decoration: none; border: 2px solid var(--black);
+    transition: transform .12s, box-shadow .12s; cursor: pointer;
   }
-  .btn-download:hover { transform: translate(-1px, -1px); box-shadow: 4px 4px 0 var(--black); }
+  .btn-download:hover { transform: translate(-1px, -1px); box-shadow: 3px 3px 0 var(--black); }
   .btn-download svg { stroke-width: 2.2; }
+  /* placeholder: content still to be supplied by the client */
+  .content-todo {
+    display: inline-block; font-family: var(--font-head); font-weight: 700;
+    font-size: .78rem; letter-spacing: .04em; color: #8a6d00;
+    background: #fff7d6; border: 1px dashed #d9be4e; border-radius: 6px;
+    padding: .3rem .6rem;
+  }
+  .doc-card.placeholder { border-style: dashed; }
+  .doc-card.placeholder .btn-download { background: var(--gray-line); border-color: #cfcfca; color: #6b6b6b; pointer-events: none; box-shadow: none; }
+
+  /* ============================================================
+     VIDEOS
+     ============================================================ */
+  .video-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.4rem; }
+  .video-card {
+    position: relative; border-radius: 12px; overflow: hidden; border: 1px solid var(--gray-line);
+    background: var(--black); aspect-ratio: 16 / 9; display: grid; place-items: center;
+  }
+  .video-card .play {
+    width: 62px; height: 62px; border-radius: 50%; background: rgba(255,255,255,.14);
+    border: 2px solid rgba(255,255,255,.6); display: grid; place-content: center;
+  }
+  .video-card .play svg { width: 24px; height: 24px; fill: var(--white); margin-left: 3px; }
+  .video-card .v-label {
+    position: absolute; left: 0; right: 0; bottom: 0; padding: .8rem 1rem;
+    background: linear-gradient(0deg, rgba(0,0,0,.75), transparent);
+    color: var(--white); font-family: var(--font-head); font-weight: 600; font-size: .95rem;
+  }
+  .video-card .content-todo { position: absolute; top: .8rem; left: .8rem; }
+  .social-row { display: flex; flex-wrap: wrap; align-items: center; gap: 1rem; margin-top: 1.8rem; }
+  .social-row .lbl { font-family: var(--font-head); font-weight: 700; font-size: 1rem; }
+  .social-links { display: flex; gap: .7rem; }
+  .social-links a {
+    width: 42px; height: 42px; border-radius: 10px; border: 1px solid var(--gray-line);
+    display: grid; place-content: center; color: var(--dark); transition: background .2s, color .2s;
+  }
+  .social-links a:hover { background: var(--black); color: var(--white); }
+  .social-links svg { width: 20px; height: 20px; fill: currentColor; }
 
   /* ============================================================
      RISKS — accordion by category
@@ -459,7 +498,7 @@
   .phase.cold .ph-tag { background: #e7eef5; color: #2b5d86; }
   .phase.hot .ph-tag { background: var(--yellow); color: var(--black); }
   .phase .ph-tag svg { width: 15px; height: 15px; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
-  .phase h3 { font-family: var(--font-display); font-size: 1.5rem; text-transform: uppercase; margin-bottom: .7rem; }
+  .phase h3 { font-family: var(--font-head); font-weight: 700; font-size: 1.35rem; margin-bottom: .7rem; }
   .phase.hot h3 { color: var(--white); }
   .phase p { font-size: .96rem; color: var(--dark); }
   .phase.hot p { color: #d2d2d2; }
@@ -475,7 +514,7 @@
      ============================================================ */
   .comp-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.6rem; }
   .comp-block { background: var(--white); border: 1px solid var(--gray-line); border-radius: 12px; padding: 1.9rem; }
-  .comp-block h3 { font-family: var(--font-head); font-weight: 800; font-size: 1.25rem; text-transform: uppercase; margin-bottom: .8rem; display: flex; align-items: center; gap: .7rem; }
+  .comp-block h3 { font-family: var(--font-head); font-weight: 700; font-size: 1.2rem; margin-bottom: .8rem; display: flex; align-items: center; gap: .7rem; }
   .comp-block h3 .ico { width: 38px; height: 42px; clip-path: var(--hex); background: var(--yellow); display: grid; place-content: center; flex: none; }
   .comp-block h3 .ico svg { width: 20px; height: 20px; stroke: var(--black); fill: none; stroke-width: 2; }
   .comp-block p { color: var(--dark); font-size: .95rem; margin-bottom: .9rem; }
@@ -483,7 +522,7 @@
   .comp-block li { display: flex; gap: .6rem; font-size: .92rem; color: var(--dark); }
   .comp-block li::before { content: ""; flex: none; width: 13px; height: 15px; margin-top: 4px; clip-path: var(--hex); background: var(--yellow); }
   .checklist { grid-column: 1 / -1; background: var(--black); color: var(--white); border-radius: 12px; padding: 2rem; }
-  .checklist h3 { font-family: var(--font-display); color: var(--white); font-size: 1.4rem; text-transform: uppercase; margin-bottom: 1.2rem; }
+  .checklist h3 { font-family: var(--font-head); font-weight: 700; color: var(--white); font-size: 1.3rem; margin-bottom: 1.2rem; }
   .checklist h3 .y { color: var(--yellow); }
   .check-items { display: grid; grid-template-columns: repeat(2, 1fr); gap: .7rem; }
   .check-items label { display: flex; align-items: center; gap: .7rem; font-size: .92rem; color: #e3e3e3; cursor: pointer; padding: .5rem; border-radius: 6px; transition: background .15s; }
@@ -506,7 +545,7 @@
      ============================================================ */
   .band { background: var(--yellow); color: var(--black); }
   .band .wrap { display: flex; align-items: center; justify-content: space-between; gap: 2rem; flex-wrap: wrap; padding-block: 3rem; }
-  .band h2 { font-family: var(--font-display); font-size: clamp(1.6rem, 3.6vw, 2.6rem); text-transform: uppercase; line-height: 1; max-width: 22ch; }
+  .band h2 { font-family: var(--font-head); font-weight: 700; font-size: clamp(1.5rem, 3vw, 2.2rem); line-height: 1.1; max-width: 24ch; }
   .band p { margin-top: .8rem; max-width: 46ch; font-size: 1rem; }
   .band .btn { border-color: var(--black); }
   .band .btn-primary { background: var(--black); color: var(--yellow); box-shadow: 4px 4px 0 rgba(0,0,0,.25); }
@@ -520,9 +559,8 @@
   .foot-brand p { color: var(--gray); font-size: .9rem; max-width: 36ch; }
   .foot-soc { display: flex; gap: .7rem; margin-top: 1.3rem; }
   .foot-soc a { width: 40px; height: 44px; clip-path: var(--hex); background: var(--dark); display: grid; place-content: center; transition: background .2s; }
-  .foot-soc a:hover { background: var(--yellow); }
+  .foot-soc a:hover { background: #3a3a3a; }
   .foot-soc svg { width: 18px; height: 18px; fill: var(--yellow); transition: fill .2s; }
-  .foot-soc a:hover svg { fill: var(--black); }
   .foot-col h4 { font-family: var(--font-head); font-weight: 800; font-size: .82rem; text-transform: uppercase; letter-spacing: .1em; color: var(--yellow); margin-bottom: 1rem; }
   .foot-col ul { list-style: none; display: flex; flex-direction: column; gap: .6rem; }
   .foot-col a { color: #c4c4c4; font-size: .92rem; transition: color .15s; }
@@ -553,7 +591,7 @@
     .tips { grid-template-columns: 1fr; }
   }
   @media (max-width: 720px) {
-    html { scroll-padding-top: 78px; }
+    html { scroll-padding-top: 120px; }
     /* narrow viewport: text spans full width, so darken the artwork evenly
        to keep the headline crisp for all (senior) readers */
     .hero { background-position: right -60px center; }
@@ -603,6 +641,9 @@
 
 <a class="skip-link" href="#maincontent">Bai direktamente na kontenido</a>
 
+<!-- ============ STICKY TOP: alert bar + header ============ -->
+<div class="site-top" id="siteTop">
+
 <!-- ============ ALERT BAR (Alerta i komunikashon) ============ -->
 <div class="alertbar" id="alertbar">
   <div class="wrap">
@@ -633,6 +674,8 @@
     <button class="burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
   </div>
 </header>
+
+</div><!-- /.site-top -->
 <div class="nav-backdrop" id="navBackdrop"></div>
 
 <main id="maincontent" tabindex="-1">
@@ -702,6 +745,50 @@
         <p>Prepará bo organisashon ku un plan di emergensia i kontinuidat pa bo servisionan.</p>
         <span class="more">Pa negoshinan <span class="arr">→</span></span>
       </a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ VIDEOS ============ -->
+<section id="videonan">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="kicker"><span class="dot"></span> Videonan</span>
+      <h2 class="title">Videonan di preparashon</h2>
+      <p class="lede">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mira nos videonan pa siña kon pa prepará pa un emergensia.</p>
+    </div>
+    <div class="video-grid">
+      <div class="video-card reveal">
+        <span class="content-todo">⚠ Video aan te leveren</span>
+        <span class="play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span>
+        <span class="v-label">Lorem ipsum video 1</span>
+      </div>
+      <div class="video-card reveal">
+        <span class="content-todo">⚠ Video aan te leveren</span>
+        <span class="play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span>
+        <span class="v-label">Lorem ipsum video 2</span>
+      </div>
+      <div class="video-card reveal">
+        <span class="content-todo">⚠ Video aan te leveren</span>
+        <span class="play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span>
+        <span class="v-label">Lorem ipsum video 3</span>
+      </div>
+    </div>
+
+    <div class="social-row reveal">
+      <span class="lbl">Siguinos riba:</span>
+      <div class="social-links">
+        <a href="https://gobiernu.cw" target="_blank" rel="noopener" aria-label="Facebook">
+          <svg viewBox="0 0 24 24"><path d="M22 12a10 10 0 1 0-11.5 9.9v-7H8v-2.9h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.5h-1.3c-1.2 0-1.6.8-1.6 1.6v1.9h2.8l-.4 2.9h-2.3v7A10 10 0 0 0 22 12z"/></svg>
+        </a>
+        <a href="https://gobiernu.cw" target="_blank" rel="noopener" aria-label="Instagram">
+          <svg viewBox="0 0 24 24"><path d="M12 2.2c3.2 0 3.6 0 4.8.1 1.2.1 1.8.3 2.2.4.6.2 1 .5 1.4.9.4.4.7.8.9 1.4.2.4.4 1 .4 2.2.1 1.2.1 1.6.1 4.8s0 3.6-.1 4.8c-.1 1.2-.3 1.8-.4 2.2-.2.6-.5 1-.9 1.4-.4.4-.8.7-1.4.9-.4.2-1 .4-2.2.4-1.2.1-1.6.1-4.8.1s-3.6 0-4.8-.1c-1.2-.1-1.8-.3-2.2-.4-.6-.2-1-.5-1.4-.9-.4-.4-.7-.8-.9-1.4-.2-.4-.4-1-.4-2.2C2.2 15.6 2.2 15.2 2.2 12s0-3.6.1-4.8c.1-1.2.3-1.8.4-2.2.2-.6.5-1 .9-1.4.4-.4.8-.7 1.4-.9.4-.2 1-.4 2.2-.4C8.4 2.2 8.8 2.2 12 2.2zm0 3.2A6.6 6.6 0 1 0 18.6 12 6.6 6.6 0 0 0 12 5.4zm0 10.9A4.3 4.3 0 1 1 16.3 12 4.3 4.3 0 0 1 12 16.3zm6.8-11.2a1.5 1.5 0 1 1-1.5-1.5 1.5 1.5 0 0 1 1.5 1.5z"/></svg>
+        </a>
+        <a href="https://gobiernu.cw" target="_blank" rel="noopener" aria-label="YouTube">
+          <svg viewBox="0 0 24 24"><path d="M23 12s0-3.2-.4-4.7a2.5 2.5 0 0 0-1.7-1.7C19.4 5.2 12 5.2 12 5.2s-7.4 0-8.9.4A2.5 2.5 0 0 0 1.4 7.3C1 8.8 1 12 1 12s0 3.2.4 4.7a2.5 2.5 0 0 0 1.7 1.7c1.5.4 8.9.4 8.9.4s7.4 0 8.9-.4a2.5 2.5 0 0 0 1.7-1.7C23 15.2 23 12 23 12zm-13 3V9l5 3z"/></svg>
+        </a>
+      </div>
+      <span class="content-todo">⚠ Socialmedia-links aan te leveren</span>
     </div>
   </div>
 </section>
@@ -776,16 +863,16 @@
       <p class="lede">Sea prepará pa kualke situashon di emergensia. Esaki ta e mínimo nesesario. Sòru pa bo pakete ta kla promé ku un situashon eskalá.</p>
     </div>
     <div class="kit-grid">
-      <div class="kit-list reveal">
-        <div class="kit-item"><div class="ico"><svg viewBox="0 0 24 24"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg></div><span>Radio i flèshlait ku bateria</span></div>
-        <div class="kit-item"><div class="ico"><svg viewBox="0 0 24 24"><path d="M3 6h18v12H3z"/><circle cx="12" cy="12" r="3"/><path d="M7 9v.01M17 15v.01"/></svg></div><span>Sèn kèsh</span></div>
-        <div class="kit-item"><div class="ico"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg></div><span>Dokumentonan importante</span></div>
-        <div class="kit-item"><div class="ico"><svg viewBox="0 0 24 24"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2M12 11v5M9.5 13.5h5"/></svg></div><span>EHBO-kit</span></div>
-        <div class="kit-item"><div class="ico"><svg viewBox="0 0 24 24"><path d="M14.7 6.3a4 4 0 0 0-5.7 5.7l-6 6 2 2 6-6a4 4 0 0 0 5.7-5.7l-2.5 2.5-1.4-1.4z"/></svg></div><span>Hèrmènt</span></div>
-        <div class="kit-item"><div class="ico"><svg viewBox="0 0 24 24"><path d="M8 2h8M9 2v4M15 2v4M9 6c-1 3-3 5-3 9a6 6 0 0 0 12 0c0-4-2-6-3-9"/></svg></div><span>Awa pa bebe</span></div>
-        <div class="kit-item"><div class="ico"><svg viewBox="0 0 24 24"><path d="M3 11h18l-1.5 9a2 2 0 0 1-2 1.7H6.5a2 2 0 0 1-2-1.7z"/><path d="M3 11l2-6h14l2 6"/></svg></div><span>Kuminda duradero</span></div>
-        <div class="kit-item"><div class="ico"><svg viewBox="0 0 24 24"><rect x="6" y="3" width="12" height="18" rx="2"/><path d="M9 7h6M9 11h6M9 15h3"/></svg></div><span>Produktonan sanitario</span></div>
-        <div class="kit-item"><div class="ico"><svg viewBox="0 0 24 24"><rect x="3" y="8" width="14" height="9" rx="2"/><path d="M17 11h2a2 2 0 0 1 2 2v0a2 2 0 0 1-2 2h-2M7 12v3"/></svg></div><span>Remedi</span></div>
+      <div class="check-items kit-check reveal">
+        <label><input type="checkbox"><span>Radio i flèshlait ku bateria</span></label>
+        <label><input type="checkbox"><span>Sèn kèsh</span></label>
+        <label><input type="checkbox"><span>Dokumentonan importante</span></label>
+        <label><input type="checkbox"><span>EHBO-kit</span></label>
+        <label><input type="checkbox"><span>Hèrmènt</span></label>
+        <label><input type="checkbox"><span>Awa pa bebe</span></label>
+        <label><input type="checkbox"><span>Kuminda duradero</span></label>
+        <label><input type="checkbox"><span>Produktonan sanitario</span></label>
+        <label><input type="checkbox"><span>Remedi</span></label>
       </div>
       <aside class="kit-aside reveal">
         <h3>Amplia na bo nesesidat</h3>
@@ -814,20 +901,24 @@
   </div>
 </section>
 
-<!-- ============ FLYER DOWNLOAD ============ -->
-<section class="flyer-section">
+<!-- ============ DOWNLOADABLE DOCUMENTS ============ -->
+<section id="dokumentonan" class="on-paper">
   <div class="wrap">
-    <div class="flyer-container reveal">
-      <div class="flyer-preview">
-        <div class="flyer-icon">
-          <svg viewBox="0 0 24 24" width="80" height="80">
-            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" stroke="currentColor" fill="none" stroke-width="1.5"/>
-            <path d="M14 2v6h6" stroke="currentColor" fill="none" stroke-width="1.5"/>
-            <text x="12" y="16" text-anchor="middle" font-size="8" font-weight="bold" fill="currentColor">PDF</text>
-          </svg>
+    <div class="sec-head reveal">
+      <span class="kicker"><span class="dot"></span> Dokumentonan</span>
+      <h2 class="title">Dokumentonan pa deskargá</h2>
+      <p class="lede">Tur dokumento i lista importante na un solo lugá. Deskargi, prent i warda nan kla pa un emergensia.</p>
+    </div>
+    <div class="docs-grid">
+
+      <!-- Real, available document -->
+      <div class="doc-card reveal">
+        <div class="doc-ico">
+          <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M9 13h6M9 17h4"/></svg>
         </div>
-        <h3>Prent bo lista di pakete</h3>
-        <p>Deskargi i prent e lista kompleta di pakete di emergensia esensial pa bo kahe òf bo bolsa.</p>
+        <h3>Lista di pakete di emergensia esensial</h3>
+        <p>E lista kompleta di produkto básiko pa bo pakete di emergensia, kla pa prent.</p>
+        <span class="doc-meta">PDF · A4</span>
         <a href="img/Ami_Ta-Prepara_Emergensia_Longlist_A4.pdf" download class="btn-download">
           <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" fill="none" stroke-width="2">
             <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/>
@@ -835,6 +926,39 @@
           Deskargi PDF
         </a>
       </div>
+
+      <!-- Placeholder: client to supply -->
+      <div class="doc-card placeholder reveal">
+        <div class="doc-ico">
+          <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M9 13h6M9 17h4"/></svg>
+        </div>
+        <h3>Profíl di Riesgo 2023–2028</h3>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Documento ofisial di e profil di riesgo.</p>
+        <span class="content-todo">⚠ Dokumento aan te leveren</span>
+        <a class="btn-download" aria-disabled="true" tabindex="-1">
+          <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" fill="none" stroke-width="2">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/>
+          </svg>
+          Deskargi PDF
+        </a>
+      </div>
+
+      <!-- Placeholder: client to supply -->
+      <div class="doc-card placeholder reveal">
+        <div class="doc-ico">
+          <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M9 13h6M9 17h4"/></svg>
+        </div>
+        <h3>Checklist pa organisashon</h3>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit sed do eiusmod tempor.</p>
+        <span class="content-todo">⚠ Dokumento aan te leveren</span>
+        <a class="btn-download" aria-disabled="true" tabindex="-1">
+          <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" fill="none" stroke-width="2">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/>
+          </svg>
+          Deskargi PDF
+        </a>
+      </div>
+
     </div>
   </div>
 </section>
@@ -1110,10 +1234,11 @@
       <div class="foot-brand">
         <img src="img/Ami-ta-prepara-transparent-logo-p-500.png" alt="Ami Ta Prepará" style="filter:brightness(0) invert(1); background:transparent;" onerror="this.style.display='none'"/>
         <p>Página ofisial di Gobièrnu di Kòrsou dediká na konsientisashon i preparashon riba riesgo i krísis.</p>
+        <!-- placeholder social URLs point to gobiernu.cw until the real channels are supplied -->
         <div class="foot-soc">
-          <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M14 9h3l.5-3H14V4.5c0-.9.3-1.5 1.6-1.5H18V.2C17.6.1 16.4 0 15.1 0 12.3 0 10.5 1.7 10.5 4.7V6H8v3h2.5v9H14z"/></svg></a>
-          <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M12 2.2c3.2 0 3.6 0 4.9.1 1.2.1 1.8.3 2.2.4.6.2 1 .5 1.4.9.4.4.7.8.9 1.4.2.4.4 1 .4 2.2.1 1.3.1 1.7.1 4.9s0 3.6-.1 4.9c-.1 1.2-.3 1.8-.4 2.2-.2.6-.5 1-.9 1.4-.4.4-.8.7-1.4.9-.4.2-1 .4-2.2.4-1.3.1-1.7.1-4.9.1s-3.6 0-4.9-.1c-1.2-.1-1.8-.3-2.2-.4-.6-.2-1-.5-1.4-.9-.4-.4-.7-.8-.9-1.4-.2-.4-.4-1-.4-2.2C2.2 15.6 2.2 15.2 2.2 12s0-3.6.1-4.9c.1-1.2.3-1.8.4-2.2.2-.6.5-1 .9-1.4.4-.4.8-.7 1.4-.9.4-.2 1-.4 2.2-.4 1.3-.1 1.7-.1 4.8-.1zM12 5.8a6.2 6.2 0 1 0 0 12.4 6.2 6.2 0 0 0 0-12.4zm0 10.2a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.4-10.4a1.4 1.4 0 1 1-2.9 0 1.4 1.4 0 0 1 2.9 0z"/></svg></a>
-          <a href="#" aria-label="YouTube"><svg viewBox="0 0 24 24"><path d="M23 7.5a3 3 0 0 0-2.1-2.1C19 4.9 12 4.9 12 4.9s-7 0-8.9.5A3 3 0 0 0 1 7.5C.5 9.4.5 12 .5 12s0 2.6.5 4.5a3 3 0 0 0 2.1 2.1c1.9.5 8.9.5 8.9.5s7 0 8.9-.5a3 3 0 0 0 2.1-2.1c.5-1.9.5-4.5.5-4.5s0-2.6-.5-4.5zM9.7 15.4V8.6l6 3.4z"/></svg></a>
+          <a href="https://gobiernu.cw" target="_blank" rel="noopener" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M14 9h3l.5-3H14V4.5c0-.9.3-1.5 1.6-1.5H18V.2C17.6.1 16.4 0 15.1 0 12.3 0 10.5 1.7 10.5 4.7V6H8v3h2.5v9H14z"/></svg></a>
+          <a href="https://gobiernu.cw" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M12 2.2c3.2 0 3.6 0 4.9.1 1.2.1 1.8.3 2.2.4.6.2 1 .5 1.4.9.4.4.7.8.9 1.4.2.4.4 1 .4 2.2.1 1.3.1 1.7.1 4.9s0 3.6-.1 4.9c-.1 1.2-.3 1.8-.4 2.2-.2.6-.5 1-.9 1.4-.4.4-.8.7-1.4.9-.4.2-1 .4-2.2.4-1.3.1-1.7.1-4.9.1s-3.6 0-4.9-.1c-1.2-.1-1.8-.3-2.2-.4-.6-.2-1-.5-1.4-.9-.4-.4-.7-.8-.9-1.4-.2-.4-.4-1-.4-2.2C2.2 15.6 2.2 15.2 2.2 12s0-3.6.1-4.9c.1-1.2.3-1.8.4-2.2.2-.6.5-1 .9-1.4.4-.4.8-.7 1.4-.9.4-.2 1-.4 2.2-.4 1.3-.1 1.7-.1 4.8-.1zM12 5.8a6.2 6.2 0 1 0 0 12.4 6.2 6.2 0 0 0 0-12.4zm0 10.2a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.4-10.4a1.4 1.4 0 1 1-2.9 0 1.4 1.4 0 0 1 2.9 0z"/></svg></a>
+          <a href="https://gobiernu.cw" target="_blank" rel="noopener" aria-label="YouTube"><svg viewBox="0 0 24 24"><path d="M23 7.5a3 3 0 0 0-2.1-2.1C19 4.9 12 4.9 12 4.9s-7 0-8.9.5A3 3 0 0 0 1 7.5C.5 9.4.5 12 .5 12s0 2.6.5 4.5a3 3 0 0 0 2.1 2.1c1.9.5 8.9.5 8.9.5s7 0 8.9-.5a3 3 0 0 0 2.1-2.1c.5-1.9.5-4.5.5-4.5s0-2.6-.5-4.5zM9.7 15.4V8.6l6 3.4z"/></svg></a>
         </div>
       </div>
       <div class="foot-col">
@@ -1121,8 +1246,8 @@
         <ul>
           <li><a href="#pakete">Pakete di emergensia</a></li>
           <li><a href="#prepara">Kon pa prepará</a></li>
-          <li><a href="#riesgonan">Anunsionan importante</a></li>
-          <li><a href="#informashon">Numbernan importante</a></li>
+          <li><a href="#dokumentonan">Dokumentonan pa deskargá</a></li>
+          <li><a href="#videonan">Videonan</a></li>
           <li><a href="#informashon">FAQ</a></li>
         </ul>
       </div>
@@ -1139,7 +1264,7 @@
       <div class="foot-col">
         <h4>Kontakto</h4>
         <ul class="foot-contact">
-          <li><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 0 20 15.3 15.3 0 0 1 0-20z"/></svg>gobiernu.cw</li>
+          <li><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 0 20 15.3 15.3 0 0 1 0-20z"/></svg><a href="https://gobiernu.cw" target="_blank" rel="noopener">gobiernu.cw</a></li>
           <li><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>564 0440</li>
           <li><svg viewBox="0 0 24 24"><line x1="3" y1="22" x2="21" y2="22"/><line x1="6" y1="18" x2="6" y2="11"/><line x1="10" y1="18" x2="10" y2="11"/><line x1="14" y1="18" x2="14" y2="11"/><line x1="18" y1="18" x2="18" y2="11"/><polygon points="12 2 20 7 4 7"/></svg>Gobièrnu di Kòrsou</li>
           <li style="margin-top:.6rem;"><span class="lang" style="display:inline-block;">PAP · NL · EN</span></li>

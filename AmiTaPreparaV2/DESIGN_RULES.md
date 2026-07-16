@@ -71,6 +71,36 @@ Never use chat- or social-media-style emoji (🔥 ❄ 🌐 📞 🏛 etc.) as UI
 <span class="tag"><svg viewBox="0 0 24 24"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3..."/></svg> Fase kayente</span>
 ```
 
+## 5. Calm, simple headers
+
+Headings use **Archivo (Bold, ~700)** in **sentence case**, not Archivo Black in ALL CAPS.
+Keep them powerful and professional, but slightly smaller and subtler.
+
+- **Why:** heavy uppercase display type across every heading reads as loud and
+  restless. A single bold weight in sentence case is calmer and more legible.
+- Numeric/stat display elements (big "3", stat counters) may keep Archivo Black.
+- Small UI labels (kickers, tags, nav, buttons) may stay in caps — this rule is
+  about the section/content **headers**.
+
+## 6. Restrained accent color
+
+Yellow is an accent, not a texture. Use it for the primary CTA, the logo, the
+brand word, and section kickers. Avoid sprinkling it on every hover, underline,
+border and arrow.
+
+- Neutralize repetitive micro-accents (nav hover underline, icon hover swaps) to
+  black/gray. Keep the palette calm and consistent.
+
+## 7. Provided content first; mark placeholders
+
+Use the client's supplied content (`Website Content uitwerking.docx`) as the
+source of truth. Where the design needs text/media that wasn't supplied:
+
+- Use **Lorem ipsum** for filler copy, and
+- Add a visible **`.content-todo`** marker (e.g. "⚠ … aan te leveren") so it's
+  obvious what the client still needs to deliver. Never present invented facts
+  (kit lists, phone numbers, document links) as final.
+
 ---
 
 ### Quick checklist before shipping a component
@@ -78,3 +108,6 @@ Never use chat- or social-media-style emoji (🔥 ❄ 🌐 📞 🏛 etc.) as UI
 - [ ] Zero `—` em-dashes in visible text
 - [ ] No left-border rounded callout boxes
 - [ ] No emoji in the UI — flat SVG icons only
+- [ ] Headers in Archivo Bold, sentence case (not Black caps)
+- [ ] Yellow reserved for CTAs / brand / kickers, not every accent
+- [ ] Invented content uses Lorem ipsum + a `.content-todo` marker
