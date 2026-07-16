@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Air Freight Rates</title>
+<style>
+  :root{
+    --teal:#1FB6A6;
+    --ink:#0F2436;
+    --row:#EAF2FA;
+    --grid:#C9D9EC;
+    --white:#FFFFFF;
+  }
+  body{ margin:0; background:#F7FAFC; font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,Helvetica,sans-serif; color:var(--ink); }
+
+  .rates-card{
+    max-width:980px;
+    margin:14px auto;
+    background:var(--white);
+    border-radius:20px;                  /* keep 20px */
+    box-shadow:0 4px 16px rgba(15,36,54,.08);
+    overflow:hidden;
+    border:1px solid var(--grid);
+  }
+
+  table.rates{
+    width:100%;
+    border-collapse:separate;
+    border-spacing:0;
+    table-layout:fixed;
+    font-size:13px;
+    line-height:1.2;
+    text-align:center;                   /* center everything */
+  }
+
+  thead th{
+    background:var(--teal);
+    color:#fff;
+    padding:6px 6px;
+    font-weight:800;
+    border-right:1px solid rgba(255,255,255,.25);
+  }
+  thead th:last-child{ border-right:none; }
+
+  tbody td{
+    padding:4px 6px;
+    border-right:1px solid var(--grid);
+    border-top:1px solid var(--grid);
+    white-space:nowrap;
+  }
+  tbody td:last-child{ border-right:none; }
+  tbody tr:nth-child(odd){ background:var(--row); }
+
+  /* compact widths */
+  .w-col{ width:60px; }
+  .x-col{ width:84px; }
+</style>
+</head>
+<body>
+  <section class="rates-card" aria-label="Air Freight Rates Table">
+    <table class="rates">
+      <thead>
+        <tr>
+          <th class="w-col">Weight (lbs)</th>
+          <th class="x-col">Xcg.</th>
+          <th class="w-col">Weight (lbs)</th>
+          <th class="x-col">Xcg.</th>
+          <th class="w-col">Weight (lbs)</th>
+          <th class="x-col">Xcg.</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- 1–20 / 21–40 / 41–60 -->
+        <tr><td>1</td><td>14.00</td><td>21</td><td>169.00</td><td>41</td><td>349.00</td></tr>
+        <tr><td>2</td><td>22.00</td><td>22</td><td>178.00</td><td>42</td><td>358.00</td></tr>
+        <tr><td>3</td><td>29.00</td><td>23</td><td>187.00</td><td>43</td><td>367.00</td></tr>
+        <tr><td>4</td><td>32.00</td><td>24</td><td>196.00</td><td>44</td><td>376.00</td></tr>
+        <tr><td>5</td><td>40.00</td><td>25</td><td>205.00</td><td>45</td><td>386.00</td></tr>
+        <tr><td>6</td><td>48.00</td><td>26</td><td>214.00</td><td>46</td><td>394.00</td></tr>
+        <tr><td>7</td><td>56.00</td><td>27</td><td>223.00</td><td>47</td><td>403.00</td></tr>
+        <tr><td>8</td><td>60.00</td><td>28</td><td>232.00</td><td>48</td><td>412.00</td></tr>
+        <tr><td>9</td><td>65.00</td><td>29</td><td>241.00</td><td>49</td><td>421.00</td></tr>
+        <tr><td>10</td><td>70.00</td><td>30</td><td>250.00</td><td>50</td><td>430.00</td></tr>
+        <tr><td>11</td><td>79.00</td><td>31</td><td>259.00</td><td>51</td><td>439.00</td></tr>
+        <tr><td>12</td><td>88.00</td><td>32</td><td>268.00</td><td>52</td><td>448.00</td></tr>
+        <tr><td>13</td><td>97.00</td><td>33</td><td>277.00</td><td>53</td><td>457.00</td></tr>
+        <tr><td>14</td><td>106.00</td><td>34</td><td>286.00</td><td>54</td><td>466.00</td></tr>
+        <tr><td>15</td><td>115.00</td><td>35</td><td>295.00</td><td>55</td><td>475.00</td></tr>
+        <tr><td>16</td><td>124.00</td><td>36</td><td>303.00</td><td>56</td><td>484.00</td></tr>
+        <tr><td>17</td><td>133.00</td><td>37</td><td>313.00</td><td>57</td><td>493.00</td></tr>
+        <tr><td>18</td><td>142.00</td><td>38</td><td>322.00</td><td>58</td><td>502.00</td></tr>
+        <tr><td>19</td><td>151.00</td><td>39</td><td>331.00</td><td>59</td><td>511.00</td></tr>
+        <tr><td>20</td><td>160.00</td><td>40</td><td>340.00</td><td>60</td><td>520.00</td></tr>
+      </tbody>
+    </table>
+  </section>
+</body>
+</html>

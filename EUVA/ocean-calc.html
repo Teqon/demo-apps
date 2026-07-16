@@ -1,0 +1,596 @@
+<style>
+    /* --- CSS: The Look --- */
+    :root {
+        --primary: #24346D;              /* ocean navy */
+        --secondary: #6c63ff;
+        --bg: #f9f9f9;
+        --light-blue: #e8f0fe;
+        --yellow: #ffd666;
+    }
+    .shipping-calculator-container {
+        max-width: 500px; margin: 20px auto; font-family: sans-serif;
+        background: #fff; padding: 25px; border-radius: 12px; box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+    }
+    .calc-title {
+        font-size: 22px;
+        font-weight: bold;
+        color: var(--primary);
+        text-align: center;
+        margin: 0 0 24px;
+        line-height: 1.3;
+    }
+    .form-group { margin-bottom: 20px; }
+    .form-group label { display: block; margin-bottom: 8px; font-weight: bold; color: #333; }
+    .form-group input {
+        width: 100%; padding: 12px; border: 1px solid #ccc; border-radius: 6px;
+        box-sizing: border-box; font-size: 14px;
+    }
+    .input-hint {
+        font-size: 11px; color: #888; margin-top: 6px; line-height: 1.4;
+    }
+    .input-hint code {
+        background: #f0f3f9; padding: 2px 6px; border-radius: 4px; color: var(--primary); font-weight: bold;
+    }
+    .custom-select-wrapper { position: relative; cursor: pointer; }
+    .selected-product {
+        padding: 12px; border: 1px solid #ccc; border-radius: 6px; background: #fff;
+        display: flex; justify-content: space-between; align-items: center;
+        transition: border-color 0.3s;
+    }
+    .selected-product:hover {
+        border-color: var(--primary);
+    }
+    .dropdown-content {
+        display: none;
+        position: absolute;
+        width: 100%;
+        border: 1px solid #ccc;
+        background: #fff;
+        z-index: 999;
+        max-height: 250px;
+        overflow-y: auto;
+        box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+        margin-top: 5px;
+        border-radius: 6px;
+        top: 100%;
+    }
+    .dropdown-content.show {
+        display: block;
+    }
+    .search-input {
+        width: calc(100% - 20px);
+        margin: 10px;
+        padding: 8px;
+        border: 1px solid #ddd !important;
+        border-radius: 4px;
+        box-sizing: border-box;
+        font-size: 14px;
+    }
+    .dropdown-item {
+        padding: 10px 15px;
+        border-bottom: 1px solid #f0f0f0;
+        cursor: pointer;
+        transition: background 0.2s;
+        font-size: 14px;
+    }
+    .dropdown-item:hover { background: #f4f8fb; color: var(--primary); }
+    .dropdown-item:last-child { border-bottom: none; }
+
+    /* Results Section - New Style */
+    #resultsSection {
+        display: none;
+        margin-top: 30px;
+    }
+
+    /* Summary Cards */
+    .summary-cards {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 15px;
+        margin-bottom: 20px;
+    }
+
+    .summary-card {
+        background: #f8f9fa;
+        padding: 25px 20px;
+        border-radius: 12px;
+        text-align: center;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+        position: relative;
+    }
+
+    .summary-card:last-child {
+        background: linear-gradient(135deg, #f8f9fa 0%, #e8f0fe 100%);
+    }
+
+    .summary-value {
+        font-size: 32px;
+        font-weight: bold;
+        color: var(--primary);
+        margin-bottom: 8px;
+    }
+
+    .summary-label {
+        font-size: 12px;
+        color: #666;
+        font-weight: 500;
+    }
+
+    .info-icon {
+        position: absolute;
+        bottom: 10px;
+        right: 10px;
+        width: 20px;
+        height: 20px;
+        background: var(--secondary);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 16px;
+        cursor: pointer;
+        transition: transform 0.3s, background 0.3s;
+    }
+
+    .info-icon:hover {
+        transform: scale(1.1);
+        background: #5a52e6;
+    }
+
+    /* Tooltip */
+    .tooltip {
+        position: absolute;
+        top: 50px;
+        right: 0;
+        background: #2d2d2d;
+        color: white;
+        padding: 12px 16px;
+        border-radius: 8px;
+        font-size: 12px;
+        line-height: 1.5;
+        width: 220px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.3s, visibility 0.3s;
+        z-index: 1000;
+    }
+
+    .tooltip.show {
+        opacity: 1;
+        visibility: visible;
+    }
+
+    .tooltip::before {
+        content: '';
+        position: absolute;
+        top: -8px;
+        right: 10px;
+        width: 0;
+        height: 0;
+        border-left: 8px solid transparent;
+        border-right: 8px solid transparent;
+        border-bottom: 8px solid #2d2d2d;
+    }
+
+    /* Charges Table */
+    .charges-table {
+        background: #fff;
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+        margin-bottom: 20px;
+    }
+
+    .table-header {
+        background: var(--primary);
+        color: white;
+        padding: 14px 20px;
+        display: flex;
+        justify-content: space-between;
+        font-weight: bold;
+        font-size: 14px;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+    }
+
+    .table-row {
+        padding: 14px 20px;
+        display: flex;
+        justify-content: space-between;
+        border-bottom: 1px solid #e8e8e8;
+        font-size: 14px;
+        background: #fff;
+    }
+
+    .table-row:last-child {
+        border-bottom: none;
+    }
+
+    .subtotal-row {
+        background: var(--light-blue);
+        font-weight: 600;
+        color: var(--primary);
+    }
+
+    .total-row {
+        background: var(--primary);
+        color: white;
+        font-weight: bold;
+        font-size: 16px;
+        padding: 16px 20px;
+    }
+
+    /* Disclaimer */
+    .disclaimer {
+        font-size: 11px;
+        color: #666;
+        line-height: 1.6;
+        text-align: center;
+        padding: 18px;
+        background: #fffbea;
+        border-radius: 8px;
+        border: 1px solid #ffe58f;
+    }
+    .disclaimer strong {
+        display: block;
+        margin-bottom: 6px;
+        font-size: 12px;
+        color: #333;
+    }
+    .disclaimer-link {
+        color: var(--primary);
+        font-weight: bold;
+        text-decoration: underline;
+    }
+
+    .btn-calculate {
+        background: var(--yellow);
+        color: #333;
+        padding: 16px;
+        border: none;
+        border-radius: 25px;
+        cursor: pointer;
+        width: 100%;
+        font-weight: bold;
+        transition: all 0.3s;
+        text-transform: uppercase;
+        font-size: 14px;
+        letter-spacing: 1px;
+        box-shadow: 0 4px 12px rgba(255, 214, 102, 0.4);
+    }
+    .btn-calculate:hover {
+        background: #ffc940;
+        transform: translateY(-2px);
+        box-shadow: 0 6px 16px rgba(255, 214, 102, 0.5);
+    }
+    .dropdown-arrow {
+        width: 12px;
+        height: 12px;
+        transition: transform 0.3s;
+    }
+    .dropdown-arrow.open {
+        transform: rotate(180deg);
+    }
+
+    /* Responsive */
+    @media (max-width: 640px) {
+        .summary-cards {
+            grid-template-columns: 1fr;
+        }
+
+        .summary-value {
+            font-size: 26px;
+        }
+
+        .table-row, .table-header {
+            padding: 12px 15px;
+            font-size: 13px;
+        }
+
+        .shipping-calculator-container {
+            padding: 20px;
+        }
+
+        .tooltip {
+            width: 180px;
+            font-size: 11px;
+        }
+    }
+</style>
+
+<div class="shipping-calculator-container">
+    <h2 class="calc-title">See How Much Your Ocean Freight Shipment Might Cost</h2>
+    <form id="calculatorForm">
+        <div class="form-group">
+            <label>Select Product Category</label>
+            <div id="productSelector" class="custom-select-wrapper">
+                <div id="selectedProduct" class="selected-product">
+                    <span>Select a product...</span>
+                    <svg class="dropdown-arrow" viewBox="0 0 20 20" fill="currentColor">
+                        <path d="M5 7l5 5 5-5z"/>
+                    </svg>
+                </div>
+                <div id="productDropdown" class="dropdown-content">
+                    <input type="text" id="searchInput" class="search-input" placeholder="Search categories...">
+                    <div id="productList"></div>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label>Volume (Cubic Feet &ndash; Ft&sup3;)</label>
+            <input type="number" id="volumeInput" step="0.1" min="0" required>
+            <div class="input-hint">Measure your box, then calculate cubic feet: <code>H &times; W &times; L (in inches) &divide; 1728 = ft&sup3;</code></div>
+        </div>
+        <div class="form-group">
+            <label>Product Value (USD $)</label>
+            <input type="number" id="productValue" step="0.01" min="0" required>
+        </div>
+        <button type="submit" class="btn-calculate">Calculate</button>
+    </form>
+
+    <div id="resultsSection">
+        <!-- Summary Cards -->
+        <div class="summary-cards">
+            <div class="summary-card">
+                <div class="summary-value" id="declaredValue">$100.00</div>
+                <div class="summary-label">Declared Value</div>
+            </div>
+            <div class="summary-card">
+                <div class="info-icon" id="infoIcon">&#9432;</div>
+                <div class="tooltip" id="cifTooltip">
+                    CIF value = Total invoice of the package + Transport cost + Insurance
+                </div>
+                <div class="summary-value" id="cifValue">Cg 287.64</div>
+                <div class="summary-label">CIF Value (Customs Value)</div>
+            </div>
+        </div>
+
+        <!-- Charges Table -->
+        <div class="charges-table">
+            <div class="table-header">
+                <span>Charges</span>
+                <span>Cg</span>
+            </div>
+            <div class="table-row">
+                <span>Freight</span>
+                <span id="freightValue">Cg 102.00</span>
+            </div>
+            <div class="table-row">
+                <span>Duties</span>
+                <span id="dutiesValue">Cg 65.52</span>
+            </div>
+            <div class="table-row subtotal-row">
+                <span>Total EUVA Xpress Charges</span>
+                <span id="shippingTotal">Cg 107.30</span>
+            </div>
+            <div class="table-row subtotal-row">
+                <span>Total Government Charges</span>
+                <span id="governmentTotal">Cg 65.52</span>
+            </div>
+            <div class="table-row total-row">
+                <span>Total Charges</span>
+                <span id="totalChargesValue">Cg 172.82</span>
+            </div>
+        </div>
+
+        <!-- Disclaimer -->
+        <div class="disclaimer">
+            <strong>&#128161; Heads up!</strong>
+            The prices shown are estimates of freight and customs charges and do not include our local handling fee, starting at Cg 25.00. Final charges may vary depending on the actual customs declaration, special handling requirements (such as certain consumer goods), or specific import requirements for particular products. Want to know more? Check out our <a href="#" class="disclaimer-link">restricted shipments list</a> for details!
+        </div>
+    </div>
+</div>
+
+<script>
+/* --- JAVASCRIPT: The Engine (Ocean Freight) --- */
+(function() {
+    const CSV_URL = 'https://www.euvaxpress.com/wp-content/uploads/2025/11/curacao_import_duties_with_tax_UPDATED-1-1.csv';
+    const USD_TO_CG_RATE = 1.82;
+
+    // Ocean freight rate table by cubic feet (index 1–30). Cg per shipment.
+    const OCEAN_RATES = [0,
+        23, 45, 66, 86, 105, 120, 135, 150, 165, 180,     /* 1-10  */
+        192, 204, 216, 228, 240, 249, 258, 267, 276, 285, /* 11-20 */
+        294, 303, 312, 321, 330, 339, 348, 357, 366, 375  /* 21-30 */
+    ];
+    const OVER_30_PER_FT3 = 10.00;
+
+    // Returns freight charge (Cg) for a given volume in cubic feet.
+    function oceanFreight(ft3) {
+        if (ft3 <= 0) return 0;
+        if (ft3 <= 30) return OCEAN_RATES[Math.max(1, Math.ceil(ft3))];
+        return OCEAN_RATES[30] + (ft3 - 30) * OVER_30_PER_FT3;
+    }
+
+    let products = [];
+    let selectedProduct = null;
+
+    // Elements
+    const productSelector = document.getElementById('productSelector');
+    const productDropdown = document.getElementById('productDropdown');
+    const productList = document.getElementById('productList');
+    const searchInput = document.getElementById('searchInput');
+    const calculatorForm = document.getElementById('calculatorForm');
+    const dropdownArrow = document.querySelector('.dropdown-arrow');
+    const infoIcon = document.getElementById('infoIcon');
+    const cifTooltip = document.getElementById('cifTooltip');
+
+    // Tooltip functionality
+    let tooltipTimeout;
+
+    infoIcon.addEventListener('mouseenter', function() {
+        clearTimeout(tooltipTimeout);
+        cifTooltip.classList.add('show');
+    });
+
+    infoIcon.addEventListener('mouseleave', function() {
+        tooltipTimeout = setTimeout(() => {
+            cifTooltip.classList.remove('show');
+        }, 200);
+    });
+
+    // For mobile/touch devices
+    infoIcon.addEventListener('click', function(e) {
+        e.stopPropagation();
+        cifTooltip.classList.toggle('show');
+    });
+
+    // Close tooltip when clicking outside
+    document.addEventListener('click', function(e) {
+        if (!infoIcon.contains(e.target) && !cifTooltip.contains(e.target)) {
+            cifTooltip.classList.remove('show');
+        }
+    });
+
+    // 1. Fetch CSV
+    fetch(CSV_URL)
+        .then(r => r.text())
+        .then(data => {
+            const lines = data.split('\n').filter(l => l.trim() !== '');
+            const headers = lines[0].split(',');
+            const catIdx = headers.findIndex(h => h.toLowerCase().includes('category'));
+            const rateIdx = headers.findIndex(h => h.toLowerCase().includes('effective'));
+
+            products = lines.slice(1).map(line => {
+                const cols = line.split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/);
+                return {
+                    name: cols[catIdx]?.replace(/"/g, '').trim(),
+                    taxRate: parseFloat(cols[rateIdx]?.replace('%', '')) || 0
+                };
+            }).filter(p => p.name);
+            renderList();
+        })
+        .catch(err => {
+            console.error('Error loading CSV:', err);
+            alert('Failed to load product categories. Please refresh the page.');
+        });
+
+    // Render dropdown items using safe DOM methods (textContent, not innerHTML)
+    function renderList(filter = '') {
+        const filtered = products.filter(p => p.name.toLowerCase().includes(filter.toLowerCase()));
+        productList.replaceChildren();
+
+        if (filtered.length === 0) {
+            const empty = document.createElement('div');
+            empty.style.cssText = 'padding: 15px; text-align: center; color: #999;';
+            empty.textContent = 'No categories found';
+            productList.appendChild(empty);
+            return;
+        }
+
+        filtered.forEach(p => {
+            const item = document.createElement('div');
+            item.className = 'dropdown-item';
+            item.dataset.rate = p.taxRate;
+            item.textContent = `${p.name} (${p.taxRate}%)`;
+            productList.appendChild(item);
+        });
+    }
+
+    // Helper function to close dropdown
+    function closeDropdown() {
+        productDropdown.classList.remove('show');
+        productDropdown.style.display = 'none';
+        dropdownArrow.classList.remove('open');
+    }
+
+    // Helper function to open dropdown
+    function openDropdown() {
+        productDropdown.classList.add('show');
+        productDropdown.style.display = 'block';
+        dropdownArrow.classList.add('open');
+        searchInput.value = '';
+        renderList();
+        setTimeout(() => searchInput.focus(), 100);
+    }
+
+    // 2. Interaction - Toggle dropdown
+    productSelector.addEventListener('click', function(e) {
+        e.stopPropagation();
+        const isOpen = productDropdown.classList.contains('show');
+        if (isOpen) {
+            closeDropdown();
+        } else {
+            openDropdown();
+        }
+    });
+
+    // Search functionality
+    searchInput.addEventListener('input', function(e) {
+        renderList(e.target.value);
+    });
+
+    // Prevent dropdown close when clicking inside it
+    searchInput.addEventListener('click', function(e) {
+        e.stopPropagation();
+    });
+
+    productDropdown.addEventListener('click', function(e) {
+        e.stopPropagation();
+    });
+
+    // Select product and close dropdown
+    productList.addEventListener('click', function(e) {
+        if(e.target.classList.contains('dropdown-item')) {
+            selectedProduct = {
+                name: e.target.innerText,
+                taxRate: parseFloat(e.target.dataset.rate)
+            };
+            document.querySelector('#selectedProduct span').innerText = selectedProduct.name;
+            closeDropdown();
+        }
+    });
+
+    // Close dropdown when clicking outside
+    document.addEventListener('click', function(e) {
+        if (!productSelector.contains(e.target) && !productDropdown.contains(e.target)) {
+            closeDropdown();
+        }
+    });
+
+    // 3. Calculation
+    calculatorForm.onsubmit = (e) => {
+        e.preventDefault();
+        if(!selectedProduct) {
+            alert('Please select a product category');
+            return;
+        }
+
+        const ft3 = parseFloat(document.getElementById('volumeInput').value);
+        const usdVal = parseFloat(document.getElementById('productValue').value);
+
+        if (ft3 <= 0 || usdVal <= 0) {
+            alert('Please enter valid volume and product value');
+            return;
+        }
+
+        // Freight Logic (Ocean — priced by cubic feet)
+        const freightCG = oceanFreight(ft3);
+
+        const dutiesCG = (usdVal * (selectedProduct.taxRate / 100)) * USD_TO_CG_RATE;
+
+        // Subtotals (fuel & customs-handling removed per client)
+        const shippingTotal = freightCG;
+        const governmentTotal = dutiesCG;
+        const totalCG = shippingTotal + governmentTotal;
+
+        // CIF Approx (Value + Freight + 2% Insurance)
+        const cifCG = (usdVal + (freightCG/USD_TO_CG_RATE) + (usdVal * 0.02)) * USD_TO_CG_RATE;
+
+        // Display
+        document.getElementById('declaredValue').innerText = '$' + usdVal.toFixed(2);
+        document.getElementById('cifValue').innerText = 'Cg ' + cifCG.toFixed(2);
+        document.getElementById('freightValue').innerText = 'Cg ' + freightCG.toFixed(2);
+        document.getElementById('dutiesValue').innerText = 'Cg ' + dutiesCG.toFixed(2);
+        document.getElementById('shippingTotal').innerText = 'Cg ' + shippingTotal.toFixed(2);
+        document.getElementById('governmentTotal').innerText = 'Cg ' + governmentTotal.toFixed(2);
+        document.getElementById('totalChargesValue').innerText = 'Cg ' + totalCG.toFixed(2);
+        document.getElementById('resultsSection').style.display = 'block';
+
+        // Smooth scroll to results
+        document.getElementById('resultsSection').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    };
+})();
+</script>

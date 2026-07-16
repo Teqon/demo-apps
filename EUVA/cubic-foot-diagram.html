@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Cubic Foot Diagram</title>
+<style>
+  :root{
+    --cube-top:#3B4E96;
+    --cube-front:#24346D;
+    --cube-right:#1C2A5A;
+    --cube-edge:#131C3F;
+    --frame:#FFC400;
+    --ink:#2B2B2B;
+    --muted:#555;
+  }
+  body{ margin:0; background:#FFFFFF; font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,Helvetica,sans-serif; color:var(--ink); }
+
+  .diagram{
+    max-width:640px;
+    margin:20px auto;
+    text-align:center;
+  }
+
+  /* Rounded yellow-bordered card holding the cube */
+  .cube-card{
+    border:4px solid var(--frame);
+    border-radius:22px;
+    padding:22px 18px 18px;
+    display:inline-block;
+    background:#fff;
+  }
+  .cube-card svg{ display:block; margin:0 auto; }
+
+  .cf-title{
+    font-size:26px;
+    font-weight:800;
+    margin:6px 0 6px;
+    color:var(--ink);
+    letter-spacing:.2px;
+  }
+  .cf-calc{
+    font-size:17px;
+    line-height:1.5;
+    color:var(--muted);
+    font-weight:600;
+    margin:0;
+  }
+
+  /* Big formula below the card */
+  .formula{
+    margin:26px auto 6px;
+    font-size:clamp(20px,4.4vw,30px);
+    font-weight:800;
+    color:#111;
+    letter-spacing:.3px;
+    white-space:nowrap;
+  }
+  .formula sup{ font-size:.62em; }
+
+  /* label text inside the svg */
+  .lbl{ font-family:inherit; font-size:19px; font-weight:600; fill:var(--muted); }
+</style>
+</head>
+<body>
+  <div class="diagram">
+    <div class="cube-card">
+      <svg viewBox="0 0 320 300" width="300" height="281" role="img" aria-label="Diagram of one cubic foot: a cube measuring 1 foot on each side.">
+        <!-- depth vector applied: (+58, -42) -->
+        <!-- Faces -->
+        <!-- Top face: FL(60,110) FR(200,110) BR(258,68) BL(118,68) -->
+        <polygon points="60,110 200,110 258,68 118,68" fill="var(--cube-top)" stroke="var(--cube-edge)" stroke-width="2" stroke-linejoin="round"/>
+        <!-- Right face: FR(200,110) FBR(200,250) BBR(258,208) BR(258,68) -->
+        <polygon points="200,110 200,250 258,208 258,68" fill="var(--cube-right)" stroke="var(--cube-edge)" stroke-width="2" stroke-linejoin="round"/>
+        <!-- Front face: FL(60,110) FR(200,110) FBR(200,250) FBL(60,250) -->
+        <polygon points="60,110 200,110 200,250 60,250" fill="var(--cube-front)" stroke="var(--cube-edge)" stroke-width="2" stroke-linejoin="round"/>
+
+        <!-- Hidden back edges (dashed) : back-bottom-left corner = (118,208) -->
+        <g stroke="#4A5568" stroke-width="1.6" stroke-dasharray="5 5" fill="none">
+          <line x1="60"  y1="250" x2="118" y2="208"/>  <!-- front-bottom-left to back-bottom-left -->
+          <line x1="118" y1="208" x2="258" y2="208"/>  <!-- back-bottom-left to back-bottom-right -->
+          <line x1="118" y1="208" x2="118" y2="68"/>   <!-- back-bottom-left up to back-top-left -->
+        </g>
+
+        <!-- Dimension labels -->
+        <text class="lbl" x="272" y="150">1 ft</text>              <!-- height (right) -->
+        <text class="lbl" x="238" y="248">1 ft</text>              <!-- depth (bottom-right) -->
+        <text class="lbl" x="112" y="284" text-anchor="middle">1 ft</text> <!-- width (bottom) -->
+      </svg>
+
+      <p class="cf-title">1 Cubic foot</p>
+      <p class="cf-calc">12&nbsp;&times;&nbsp;12&nbsp;&times;&nbsp;12<br>H&nbsp;&times;&nbsp;W&nbsp;&times;&nbsp;L&nbsp;=&nbsp;1728</p>
+    </div>
+
+    <p class="formula">H &times; W &times; L (in inches) &divide; 1728 = ft<sup>3</sup></p>
+  </div>
+</body>
+</html>

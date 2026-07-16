@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Ocean Freight Rates</title>
+<style>
+  :root{
+    --navy:#24346D;            /* header */
+    --grid:#C9D9EC;            /* grid lines */
+    --row:#EAF2FA;             /* zebra row */
+    --ink:#0F2436;             /* text */
+    --white:#FFFFFF;
+  }
+  body{ margin:0; background:#F7FAFC; font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,Helvetica,sans-serif; color:var(--ink); }
+
+  .rates-card{
+    max-width:980px;
+    margin:14px auto;
+    background:var(--white);
+    border-radius:20px;                  /* keep 20px */
+    box-shadow:0 4px 16px rgba(15,36,54,.08);
+    overflow:hidden;
+    border:1px solid var(--grid);
+  }
+
+  table.rates{
+    width:100%;
+    border-collapse:collapse;
+    table-layout:fixed;
+    font-size:14px;
+    line-height:1.25;
+  }
+
+  thead th{
+    background:var(--navy);
+    color:#fff;
+    padding:8px 10px;
+    font-weight:800;
+    text-align:center;
+    border:1px solid var(--navy);
+    line-height:1.2;
+  }
+
+  tbody td{
+    padding:7px 12px !important;         /* !important resists host-theme cell padding */
+    line-height:1.25 !important;
+    height:auto !important;
+    border:1px solid var(--grid);
+    white-space:nowrap;
+    vertical-align:middle;
+  }
+  /* Ft3 (index) columns: bold, right-aligned */
+  tbody td.ft{ text-align:right; font-weight:700; }
+  /* Xcg columns: left-aligned */
+  tbody td.xc{ text-align:left; }
+
+  /* zebra striping */
+  tbody tr:nth-child(odd) td{ background:var(--row); }
+
+  /* column widths for the wide (3-block) layout */
+  .rates-wide .w-col{ width:96px; }
+  .rates-wide .x-col{ width:90px; }
+
+  /* ---- responsive switch ---- */
+  /* narrow (single 2-column) table is hidden by default */
+  .rates-narrow{ display:none; }
+
+  @media (max-width:600px){
+    .rates-card{ margin:12px 10px; }
+    .rates-wide{ display:none; }            /* hide the 6-column layout */
+    .rates-narrow{ display:table; }          /* show stacked 2-column layout */
+    table.rates{ font-size:15px; }
+    thead th{ padding:10px 14px !important; }
+    tbody td{ padding:6px 14px !important; } /* tight rows, no dead space */
+    /* balance the two columns so numbers sit near the divider, not marooned at the edges */
+    .rates-narrow .ft{ width:38%; padding-right:18px !important; }
+    .rates-narrow .xc{ padding-left:18px !important; }
+  }
+</style>
+</head>
+<body>
+  <section class="rates-card" aria-label="Ocean Freight Rates Table">
+
+    <!-- WIDE: 3 blocks side by side (desktop / tablet) -->
+    <table class="rates rates-wide">
+      <thead>
+        <tr>
+          <th class="w-col">Cubic Feet<br>(Ft3)</th>
+          <th class="x-col">Xcg.</th>
+          <th class="w-col">Cubic Feet<br>(Ft3)</th>
+          <th class="x-col">Xcg.</th>
+          <th class="w-col">Cubic Feet<br>(Ft3)</th>
+          <th class="x-col">Xcg.</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- 1–10 / 11–20 / 21–30 -->
+        <tr><td class="ft">1</td><td class="xc">23.00</td><td class="ft">11</td><td class="xc">192.00</td><td class="ft">21</td><td class="xc">294.00</td></tr>
+        <tr><td class="ft">2</td><td class="xc">45.00</td><td class="ft">12</td><td class="xc">204.00</td><td class="ft">22</td><td class="xc">303.00</td></tr>
+        <tr><td class="ft">3</td><td class="xc">66.00</td><td class="ft">13</td><td class="xc">216.00</td><td class="ft">23</td><td class="xc">312.00</td></tr>
+        <tr><td class="ft">4</td><td class="xc">86.00</td><td class="ft">14</td><td class="xc">228.00</td><td class="ft">24</td><td class="xc">321.00</td></tr>
+        <tr><td class="ft">5</td><td class="xc">105.00</td><td class="ft">15</td><td class="xc">240.00</td><td class="ft">25</td><td class="xc">330.00</td></tr>
+        <tr><td class="ft">6</td><td class="xc">120.00</td><td class="ft">16</td><td class="xc">249.00</td><td class="ft">26</td><td class="xc">339.00</td></tr>
+        <tr><td class="ft">7</td><td class="xc">135.00</td><td class="ft">17</td><td class="xc">258.00</td><td class="ft">27</td><td class="xc">348.00</td></tr>
+        <tr><td class="ft">8</td><td class="xc">150.00</td><td class="ft">18</td><td class="xc">267.00</td><td class="ft">28</td><td class="xc">357.00</td></tr>
+        <tr><td class="ft">9</td><td class="xc">165.00</td><td class="ft">19</td><td class="xc">276.00</td><td class="ft">29</td><td class="xc">366.00</td></tr>
+        <tr><td class="ft">10</td><td class="xc">180.00</td><td class="ft">20</td><td class="xc">285.00</td><td class="ft">30</td><td class="xc">375.00</td></tr>
+      </tbody>
+    </table>
+
+    <!-- NARROW: single 2-column list 1–30 (mobile) -->
+    <table class="rates rates-narrow">
+      <thead>
+        <tr>
+          <th>Cubic Feet (Ft3)</th>
+          <th>Xcg.</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td class="ft">1</td><td class="xc">23.00</td></tr>
+        <tr><td class="ft">2</td><td class="xc">45.00</td></tr>
+        <tr><td class="ft">3</td><td class="xc">66.00</td></tr>
+        <tr><td class="ft">4</td><td class="xc">86.00</td></tr>
+        <tr><td class="ft">5</td><td class="xc">105.00</td></tr>
+        <tr><td class="ft">6</td><td class="xc">120.00</td></tr>
+        <tr><td class="ft">7</td><td class="xc">135.00</td></tr>
+        <tr><td class="ft">8</td><td class="xc">150.00</td></tr>
+        <tr><td class="ft">9</td><td class="xc">165.00</td></tr>
+        <tr><td class="ft">10</td><td class="xc">180.00</td></tr>
+        <tr><td class="ft">11</td><td class="xc">192.00</td></tr>
+        <tr><td class="ft">12</td><td class="xc">204.00</td></tr>
+        <tr><td class="ft">13</td><td class="xc">216.00</td></tr>
+        <tr><td class="ft">14</td><td class="xc">228.00</td></tr>
+        <tr><td class="ft">15</td><td class="xc">240.00</td></tr>
+        <tr><td class="ft">16</td><td class="xc">249.00</td></tr>
+        <tr><td class="ft">17</td><td class="xc">258.00</td></tr>
+        <tr><td class="ft">18</td><td class="xc">267.00</td></tr>
+        <tr><td class="ft">19</td><td class="xc">276.00</td></tr>
+        <tr><td class="ft">20</td><td class="xc">285.00</td></tr>
+        <tr><td class="ft">21</td><td class="xc">294.00</td></tr>
+        <tr><td class="ft">22</td><td class="xc">303.00</td></tr>
+        <tr><td class="ft">23</td><td class="xc">312.00</td></tr>
+        <tr><td class="ft">24</td><td class="xc">321.00</td></tr>
+        <tr><td class="ft">25</td><td class="xc">330.00</td></tr>
+        <tr><td class="ft">26</td><td class="xc">339.00</td></tr>
+        <tr><td class="ft">27</td><td class="xc">348.00</td></tr>
+        <tr><td class="ft">28</td><td class="xc">357.00</td></tr>
+        <tr><td class="ft">29</td><td class="xc">366.00</td></tr>
+        <tr><td class="ft">30</td><td class="xc">375.00</td></tr>
+      </tbody>
+    </table>
+
+  </section>
+</body>
+</html>
