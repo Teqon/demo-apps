@@ -288,6 +288,22 @@
   section.on-dark .lede { color: #cfcfcf; }
   .on-paper { background: var(--paper); }
 
+  /* ---------- disaster artwork backdrops (subtle, provided assets) ---------- */
+  /* themed icon backdrop, kept very faint so it reads as texture, not clutter */
+  #menu { position: relative; overflow: hidden; }
+  #menu::before {
+    content: ""; position: absolute; inset: 0; z-index: 0; pointer-events: none;
+    background: url("img/disaster-backdrop.png") center / cover no-repeat;
+    opacity: .08;
+  }
+  #menu .wrap { position: relative; z-index: 1; }
+  /* faint honeycomb grid behind the downloadable documents */
+  #dokumentonan {
+    background-color: var(--paper);
+    background-image: url("img/disaster-grid.png");
+    background-size: cover; background-position: center;
+  }
+
   /* ============================================================
      INTRO STRIP — "3 dia" callout
      ============================================================ */
