@@ -1,46 +1,42 @@
-# Design QA — Light hero redesign
+# Design QA - Client feedback implementation
 
-- Source visual truth: `/private/var/folders/bc/17p9h13s3v9cdtj1k38s8kjc0000gn/T/codex-clipboard-b5025606-4e8e-4abe-82ba-d89569b889d7.png`
-- Supplied source assets: `img/disaster-grid.png`, `img/disaster-backdrop.png`
-- Desktop implementation: `/Users/rich/Documents/GitHub/demo-apps/AmiTaPreparaV2/tmp/hero-light-desktop-final.png`
-- Mobile implementation: `/Users/rich/Documents/GitHub/demo-apps/AmiTaPreparaV2/tmp/hero-light-mobile-final.png`
-- Combined comparison: `/Users/rich/Documents/GitHub/demo-apps/AmiTaPreparaV2/tmp/hero-light-comparison.png`
-- Viewports: 1440 × 1000 desktop; 390 × 844 mobile
-- State: initial page load, hero visible, alert bar open
+- Primary content source: `Website Content uitwerking.docx`
+- Emergency-kit source: `img/Ami_Ta-Prepara_Emergensia_Longlist_A4.pdf`
+- Brand source: `AmiTaPrepara_Merkrichtlijnen_Versie1.0 (2).pdf`
+- Before screenshots: `tmp/feedback-audit/01-home-before.png`, `tmp/feedback-audit/02-kit-before.png`, `tmp/feedback-audit/03-docs-before.png`
+- Final screenshots: `tmp/feedback-audit/04-home-after.png`, `tmp/feedback-audit/05-kit-after.png`, `tmp/feedback-audit/06-media-after.png`, `tmp/feedback-audit/07-mobile-home-after.png`, `tmp/feedback-audit/08-mobile-social-after.png`
+- Viewports: 1280 x 1000 desktop browser surface; 390 x 844 mobile
+- State: initial page load and settled scroll states with sticky alert/header visible
 
-## Findings
+## Findings and fixes
 
-No actionable P0, P1, or P2 differences remain. The website intentionally adapts the flyer’s visual language rather than reproducing the flyer’s campaign-specific copy and portrait layout.
-
-## Full-view comparison evidence
-
-The combined comparison confirms the shared bright white/off-white canvas, faint honeycomb preparedness motif, black display typography, yellow highlighted keyword, and black/yellow brand hierarchy. The website retains its navigation, introductory copy, and calls to action because those are functional site requirements.
-
-## Focused-region comparison evidence
-
-The hero was checked at desktop and phone widths. At desktop, the copy remains left-aligned with generous open space and faint yellow disaster symbols behind the right side. At 390 px, the heading wraps cleanly, the eyebrow remains readable, and both calls to action stack at full width without horizontal overflow.
+- P1 - Unsourced content mixed with approved copy. Replaced the unverified phone numbers, FAQ answer, several introductions, and other supporting descriptions with Lorem ipsum plus visible `Kontenido pendente` labels.
+- P1 - Emergency-kit content was incomplete. Replaced the shortened 9-item display with all 15 items from the supplied official PDF.
+- P2 - Emergency-kit list looked interactive and used a large dark/yellow treatment. Converted both checklist presentations to static disabled checklist elements and changed the emergency-kit section to a calmer light treatment.
+- P2 - Heading hierarchy felt too loud. Reduced hero and section heading size/weight and replaced several invented headings with supplied sitemap/content headings.
+- P2 - Accent color was overused. Removed the final dark promotional band and replaced the large yellow emergency-kit panel with a neutral white card.
+- P2 - Government connection was not prominent enough. Added a visible `gobiernu.cw` link beside the government social icons while retaining the footer link.
+- P2 - Mobile social row overflowed after adding the government link. Grouped the project and government channels separately and allowed the links to wrap. Post-fix mobile overflow is zero.
 
 ## Required fidelity surfaces
 
-- Fonts and typography: Archivo/Roboto remain consistent with the existing site and closely reflect the flyer’s heavy geometric display style and clean supporting copy. Weight, hierarchy, line height, and mobile wrapping are clear.
-- Spacing and layout rhythm: the desktop hero preserves the flyer’s generous whitespace and left-led hierarchy; mobile spacing keeps all hero content comfortably inside 390 px.
-- Colors and visual tokens: the hero now uses white, near-black, and brand yellow; dark text contrast is strong and the pattern is deliberately low-contrast.
-- Image quality and asset fidelity: both supplied 2200 px raster assets are used at appropriate scale. No placeholder or code-drawn replacement artwork is present.
-- Copy and content: existing approved website copy is preserved; only the visual treatment changed.
+- Fonts and typography: Archivo/Roboto retained; hero and section headings now use calmer 600 weights and smaller maximum sizes.
+- Spacing and layout rhythm: desktop sections retain the established grid; the expanded 15-item kit list remains readable in two columns and collapses responsively.
+- Colors and visual tokens: black, white, gray, and brand yellow remain; yellow is reserved mainly for actions and small highlights.
+- Image quality and asset fidelity: supplied disaster textures, official logo, official PDF, and real YouTube thumbnails remain in use.
+- Copy and content: supplied content is preserved; unsupplied areas use clearly labeled Lorem ipsum. The full inventory is in `content-audit.md`.
 
 ## Interaction and technical checks
 
-- Primary and secondary hero links remain functional.
-- Desktop and mobile layouts have zero horizontal page overflow.
-- No browser console warnings or errors were observed.
+- Alert bar and header remain sticky while scrolling.
+- Hero navigation links, video links, document download, social links, and `gobiernu.cw` link remain present.
+- All displayed checklist boxes are intentionally disabled/static.
+- Desktop and 390 px mobile views have no horizontal overflow.
+- No browser console warnings or errors were observed in the final mobile pass.
 
-## Comparison history
+## Evidence limits
 
-- P2: the initial light pass left the honeycomb grid too prominent relative to the flyer. Added a translucent white treatment over the supplied raster artwork. Post-fix comparison shows a calmer, lower-contrast pattern while preserving the graphic language.
-- P2: the previous dark hero used white text and a photographic background, which conflicted with the flyer’s light campaign system. Replaced it with the supplied grid and disaster artwork, dark text, and a yellow keyword highlight. Post-fix desktop and mobile captures confirm the intended light direction.
-
-## Follow-up polish
-
-No remaining P3 items are required for this hero revision.
+- Visual review cannot confirm complete accessibility compliance or the accuracy of content that the client has not yet supplied.
+- `amitaprepara.cw` could not be fetched directly during this review; the supplied content document, official emergency-kit PDF, brand guide, and current `gobiernu.cw` materials were used as source truth.
 
 final result: passed
