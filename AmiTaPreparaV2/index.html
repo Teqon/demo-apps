@@ -297,24 +297,9 @@
   section.on-dark h2.title { color: var(--white); }
   .lede { color: var(--dark); font-size: 1.1rem; margin-top: 1rem; max-width: 65ch; }
   section.on-dark .lede { color: #cfcfcf; }
-  /* neutral grey honeycomb grid — faded to a whisper via a translucent paper wash */
-  .on-paper {
-    background-color: var(--paper);
-    background-image: linear-gradient(rgba(246,245,241,.82), rgba(246,245,241,.82)), url("img/disaster-grid.png");
-    background-size: auto, 820px auto;
-    background-position: center, top center;
-    background-repeat: no-repeat, repeat;
-  }
-
-  /* ---------- disaster artwork backdrops (provided assets) ---------- */
-  /* themed yellow-icon backdrop behind the quick-cards — one restrained accent */
-  #menu { position: relative; overflow: hidden; }
-  #menu::before {
-    content: ""; position: absolute; inset: 0; z-index: 0; pointer-events: none;
-    background: url("img/disaster-backdrop.png") center / cover no-repeat;
-    opacity: .10;
-  }
-  #menu .wrap { position: relative; z-index: 1; }
+  /* Light sections stay clean paper — the disaster artwork lives in the hero
+     only, so it reads as a showcase instead of repeating across the page. */
+  .on-paper { background: var(--paper); }
   /* documents section keeps only the faint grey grid (from .on-paper) */
 
   /* ============================================================
