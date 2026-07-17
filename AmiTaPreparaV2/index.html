@@ -197,13 +197,21 @@
      HERO
      ============================================================ */
   .hero {
-    position: relative; color: var(--white); overflow: hidden;
-    background: var(--black) url("img/hero-background-light.png") center / cover no-repeat;
+    position: relative; color: var(--black); overflow: hidden;
+    background: var(--white) url("img/disaster-grid.png") center / cover no-repeat;
+    border-bottom: 5px solid var(--yellow);
   }
-  /* left-side scrim keeps the headline readable over the artwork */
+  /* The flyer uses a very light preparedness pattern. Keep the detailed
+     disaster symbols subtle so the message remains the focal point. */
   .hero::before {
     content: ""; position: absolute; inset: 0;
-    background: linear-gradient(100deg, rgba(26,26,26,.82) 0%, rgba(26,26,26,.54) 50%, rgba(26,26,26,.24) 100%);
+    background: url("img/disaster-backdrop.png") 78% 48% / min(920px, 62vw) auto no-repeat;
+    opacity: .105;
+    pointer-events: none;
+  }
+  .hero::after {
+    content: ""; position: absolute; inset: 0; z-index: 1;
+    background: rgba(255,255,255,.56);
     pointer-events: none;
   }
   .hero .wrap {
@@ -214,8 +222,12 @@
   .hero .eyebrow {
     display: inline-flex; align-items: center; gap: .55rem;
     font-family: var(--font-head); font-weight: 700; font-size: 0.88rem;
-    text-transform: uppercase; letter-spacing: .18em; color: var(--yellow);
+    text-transform: uppercase; letter-spacing: .18em; color: var(--black);
     margin-bottom: 1.3rem;
+  }
+  .hero .eyebrow::before {
+    content: ""; width: 12px; height: 12px; flex: none;
+    background: var(--yellow); clip-path: var(--hex);
   }
   .hero h1 {
     font-family: var(--font-head); font-weight: 700;
@@ -223,9 +235,13 @@
     line-height: 1.04; letter-spacing: -.02em;
     margin-bottom: 1.3rem;
   }
-  .hero h1 .y { color: var(--yellow); }
+  .hero h1 .y {
+    color: var(--black); background: var(--yellow);
+    padding: .01em .14em .04em;
+    -webkit-box-decoration-break: clone; box-decoration-break: clone;
+  }
   .hero p.lead {
-    font-size: clamp(1rem, 1.4vw, 1.18rem); color: #d7d7d7; max-width: 46ch;
+    font-size: clamp(1rem, 1.4vw, 1.18rem); color: #3d3d3d; max-width: 46ch;
     margin-bottom: 2rem; line-height: 1.55;
   }
   .hero-cta { display: flex; flex-wrap: wrap; gap: .9rem; }
@@ -238,8 +254,8 @@
   }
   .btn-primary { background: var(--yellow); color: var(--black); box-shadow: 4px 4px 0 rgba(0,0,0,.55); }
   .btn-primary:hover { transform: translate(-2px,-2px); box-shadow: 6px 6px 0 rgba(0,0,0,.55); }
-  .btn-ghost { background: transparent; color: var(--yellow); border-color: rgba(255,255,255,.4); }
-  .btn-ghost:hover { border-color: var(--yellow); background: rgba(255,210,42,.1); }
+  .btn-ghost { background: rgba(255,255,255,.72); color: var(--black); border-color: var(--black); }
+  .btn-ghost:hover { border-color: var(--black); background: var(--white); box-shadow: 4px 4px 0 rgba(0,0,0,.16); }
   .btn .arr { transition: transform .2s; }
   .btn:hover .arr { transform: translateX(4px); }
 
@@ -629,11 +645,11 @@
   }
   @media (max-width: 720px) {
     html { scroll-padding-top: 120px; }
-    /* narrow viewport: text spans full width, so darken the artwork evenly
-       to keep the headline crisp for all (senior) readers */
-    .hero { background-position: 58% center; }
+    .hero { background-position: center; }
     .hero::before {
-      background: linear-gradient(180deg, rgba(26,26,26,.84) 0%, rgba(26,26,26,.66) 100%);
+      background-position: 72% 55%;
+      background-size: 920px auto;
+      opacity: .065;
     }
     /* backdrop-filter creates a containing block that would trap the fixed
        nav panel inside the header — drop it (keep a solid bg) on mobile */
@@ -718,7 +734,7 @@
 <main id="maincontent" tabindex="-1">
 
 <!-- ============ HERO ============ -->
-<section class="hero honey-dark" id="home">
+<section class="hero" id="home">
   <div class="wrap">
     <div class="hero-copy">
       <span class="eyebrow">Página ofisial · Gobièrnu di Kòrsou</span>
