@@ -198,12 +198,12 @@
      ============================================================ */
   .hero {
     position: relative; color: var(--white); overflow: hidden;
-    background: var(--black) url("img/hero-background-minimal.png") right center / cover no-repeat;
+    background: var(--black) url("img/hero-background-light.png") center / cover no-repeat;
   }
   /* left-side scrim keeps the headline readable over the artwork */
   .hero::before {
     content: ""; position: absolute; inset: 0;
-    background: linear-gradient(90deg, rgba(26,26,26,.92) 0%, rgba(26,26,26,.72) 42%, rgba(26,26,26,.15) 70%, transparent 100%);
+    background: linear-gradient(100deg, rgba(26,26,26,.82) 0%, rgba(26,26,26,.54) 50%, rgba(26,26,26,.24) 100%);
     pointer-events: none;
   }
   .hero .wrap {
@@ -297,14 +297,7 @@
     opacity: .16;
   }
   #menu .wrap { position: relative; z-index: 1; }
-  /* documents section: same yellow-icon backdrop, gently themed */
-  #dokumentonan { position: relative; overflow: hidden; }
-  #dokumentonan::before {
-    content: ""; position: absolute; inset: 0; z-index: 0; pointer-events: none;
-    background: url("img/disaster-backdrop.png") center / cover no-repeat;
-    opacity: .10;
-  }
-  #dokumentonan .wrap { position: relative; z-index: 1; }
+  /* documents section keeps only the neutral grey grid (from .on-paper) */
 
   /* ============================================================
      INTRO STRIP — "3 dia" callout
@@ -638,9 +631,9 @@
     html { scroll-padding-top: 120px; }
     /* narrow viewport: text spans full width, so darken the artwork evenly
        to keep the headline crisp for all (senior) readers */
-    .hero { background-position: right -60px center; }
+    .hero { background-position: 58% center; }
     .hero::before {
-      background: linear-gradient(180deg, rgba(26,26,26,.86) 0%, rgba(26,26,26,.72) 100%);
+      background: linear-gradient(180deg, rgba(26,26,26,.84) 0%, rgba(26,26,26,.66) 100%);
     }
     /* backdrop-filter creates a containing block that would trap the fixed
        nav panel inside the header — drop it (keep a solid bg) on mobile */
