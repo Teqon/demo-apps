@@ -186,6 +186,8 @@
         text-transform: uppercase;
         letter-spacing: 0.5px;
     }
+    /* keep the "Cg" unit label in normal case (not uppercased) */
+    .table-header .hdr-cg { text-transform: none; }
 
     .table-row {
         padding: 14px 20px;
@@ -342,10 +344,10 @@
         <div class="charges-table">
             <div class="table-header">
                 <span>Charges</span>
-                <span>Cg</span>
+                <span class="hdr-cg">Cg</span>
             </div>
             <div class="table-row">
-                <span>Freight</span>
+                <span>Ocean Freight</span>
                 <span id="freightValue">Cg 102.00</span>
             </div>
             <div class="table-row">
